@@ -1,0 +1,98 @@
+/*********TAOBER*************/
+body{font-family: 'Raleway', sans-serif;}
+.galeria-imagens{
+    padding-top:10px;
+    font-size: 14px;
+}
+.galeria-imagens .box-img {
+    width: 24%;
+    padding-right: 5px;
+    padding-bottom: 7px;
+    border: 1px solid #ccc;
+    margin: 0 5px 6px 0;
+    padding: 4px;
+    background-color: #fdfbfb;
+    border-radius: 4px;
+}
+
+.adm-img.box-img {
+    width: 100%;
+    height: 200px;
+    /* padding-right: 5px; */
+    margin-bottom: 13px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+
+p {margin: 0 0 8px;}
+.tp-rightarrow,
+#rev_slider_2_1 .zeus.tparrows,
+.cbp-nav-controls{ display: none !important;}
+.form-contato input,
+.form-contato textarea {width: 100%;}
+.form-enviar {
+    background: #000;
+    color: #ffc107;
+    border: 0;
+    font-weight: bold;
+}
+#js-grid-imagens-mobile .cbp-item,
+#js-grid-plantas-mobile .cbp-item  {
+    width: 100%;
+}
+.owl-theme .owl-dots {
+    text-align: center;
+}
+.owl-theme .owl-dots .owl-dot {
+    display: inline-block;
+    zoom: 1;
+}
+.owl-theme .owl-dots .owl-dot span {
+    width: 10px;
+    height: 10px;
+    margin: 5px 7px;
+    background: #D6D6D6;
+    display: block;
+    -webkit-backface-visibility: visible;
+    transition: opacity .2s ease;
+    border-radius: 30px;
+}
+.owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
+    background: #869791;
+}
+
+.logo img {width:130px;}
+.texto-sucesso {
+        font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    #home .tp-caption {
+        font-size: 32px !important;
+        white-space: normal !important;
+        transform: none !important;
+        transform-origin: 0 !important;
+        text-align: center !important;
+        top: 50px;
+        line-height: 40px !important;
+    }
+    #home .tp-caption.tp-caption-sub {
+        font-size: 14px !important;
+        line-height: 24px !important;
+        white-space: nowrap !important;
+        top: 30px;
+    }
+    header {display:block;}
+    header .banner-text {float:left;}
+    .alinhar-right {float:right;}
+    .logo {margin-top:10px; float:left;}
+    .about .about-img {
+        height: 280px !important;
+    }
+    .my-tog-btn {width:25px; margin-right: 15px;}
+    .logo img {width:70px; margin-left:10px;}
+}

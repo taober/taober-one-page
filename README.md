@@ -1,2 +1,2 @@
-# taober-one-page
-laravel para administar uma onpage
+composer install
+php artisan serve
