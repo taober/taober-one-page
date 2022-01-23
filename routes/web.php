@@ -14,18 +14,36 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+$_SESSION['site_id'] = 1;
 Route::get('/phpconfig', function () {
     phpinfo();
 });
 
-Route::get('/', [SiteController::class,'index']);
-Route::post('/contato-envia', [App\Http\Controllers\SiteController::class, 'contato_envia'])->name('contato_envia');
+Route::get('/', [CarregaSiteController::class,'index']);
+Route::post('/contato-envia', [App\Http\Controllers\CarregaSiteController::class, 'contato_envia'])->name('contato_envia');
 
 
 Auth::routes();
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/admin', [App\Http\Controllers\DashboardController::class, 'index'])->name('index');
+
+    
+
+    Route::get('/admin/site/', [App\Http\Controllers\AdmSiteController::class, 'index'])->name('index');
+    Route::post('/admin/site/salvar', [App\Http\Controllers\AdmSiteController::class, 'salvar'])->name('salvar');
+
+    Route::get('/admin/banner-principal/', [App\Http\Controllers\AdmBannerPrincipalController::class, 'index'])->name('index');
+    Route::post('/admin/banner-principal/salvar', [App\Http\Controllers\AdmBannerPrincipalController::class, 'salvar'])->name('salvar');
+
+    Route::get('/admin/quem-somos/', [App\Http\Controllers\AdmQuemSomosController::class, 'index'])->name('index');
+    Route::post('/admin/quem-somos/salvar', [App\Http\Controllers\AdmQuemSomosController::class, 'salvar'])->name('salvar');
+
+    Route::get('/admin/o-que-fazemos/', [App\Http\Controllers\AdmQueFazemosController::class, 'index'])->name('index');
+    Route::post('/admin/o-que-fazemos/edita', [App\Http\Controllers\AdmQueFazemosController::class, 'salvar'])->name('salvar');
+    Route::post('/admin/o-que-fazemos/salvar', [App\Http\Controllers\AdmQueFazemosController::class, 'salvar'])->name('salvar');
+
 Route::get('/admin/re-cache', [App\Http\Controllers\ImoveisController::class, 're_cache_image'])->name('re_cache_image');
 Route::get('/admin/imoveis', [App\Http\Controllers\ImoveisController::class, 'index'])->name('index');
 Route::get('/admin/imoveis/{id}', [App\Http\Controllers\ImoveisController::class, 'ver'])->name('ver');

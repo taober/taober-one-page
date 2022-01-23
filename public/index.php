@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
 
@@ -54,7 +54,7 @@ $response = tap($kernel->handle(
 
 $kernel->terminate($request, $response);
 if (strstr(strtolower($_SERVER['HTTP_USER_AGENT']), "googlebot")) {
-    Log::info('Google passou por aqui.');
+    //Log::info('Google passou por aqui.');
 }else{
     //Log::info('Agente (' .$_SERVER['HTTP_USER_AGENT']. ') passou por aqui.');
 }

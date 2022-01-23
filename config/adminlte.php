@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'Taober One Page',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'logo' => '<b>Procurar </b>Imóveis',
+    'logo' => '<b>Taober </b>One Page',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -238,6 +238,48 @@ return [
 
         // Sidebar items:
         ['header' => 'ADMIN'],
+        [
+            'text'        => 'Site',
+            'url'         => 'admin/site',
+            'icon'        => 'fas fa-fw fa-globe',
+            'label_color' => 'success',
+        ],
+        [
+            'text'        => 'Banner principal',
+            'url'         => 'admin/banner-principal',
+            'icon'        => 'fas fa-fw fa-image',
+            'label_color' => 'success',
+        ],
+        [
+            'text'        => 'Quem Somos',
+            'url'         => 'admin/quem-somos',
+            'icon'        => 'fas fa-fw fa-users',
+            'label_color' => 'success',
+        ],
+        [
+            'text'        => 'O Que Fazemos',
+            'url'         => 'admin/o-que-fazemos',
+            'icon'        => 'fas fa-fw fa-briefcase',
+            'label_color' => 'success',
+        ],
+        [
+            'text'        => 'Depoiomentos',
+            'url'         => 'admin/depoimentos',
+            'icon'        => 'fas fa-fw fa-comment-alt',
+            'label_color' => 'success',
+        ],
+        [
+            'text'        => 'Pages',
+            'url'         => 'admin/pages',
+            'icon'        => 'fas fa-fw fa-file-code',
+            'label_color' => 'success',
+        ],
+        [
+            'text'        => 'Portifólios',
+            'url'         => 'admin/portifolio',
+            'icon'        => 'fas fa-fw fa-network-wired',
+            'label_color' => 'success',
+        ],
         [
             'text'        => 'Imoveis',
             'url'         => 'admin/imoveis',
