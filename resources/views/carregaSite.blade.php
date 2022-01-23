@@ -487,6 +487,5 @@
 <script src="{{ asset('js/script.js') }}"></script>
 
 {!! $emp->google_analytcs !!}
-<script src="//code.jivosite.com/widget/CgswFdHmOF" async></script>
 </body>
 </html>

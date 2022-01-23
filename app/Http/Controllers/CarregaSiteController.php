@@ -27,7 +27,7 @@ class SiteController extends Controller
             ->first();
 
         if(!$emp){
-            die('<h1>Imóvel Não Encontrado</h1>');
+            die('<h1>Imï¿½vel Nï¿½o Encontrado</h1>');
         }
 
         $imagens = DB::table('imagens')
@@ -53,7 +53,7 @@ class SiteController extends Controller
             ->first();
 
         if(!$emp){
-            die('<h1>Imóvel Não Encontrado</h1>');
+            die('<h1>Imï¿½vel Nï¿½o Encontrado</h1>');
         }
 
         $imagens = DB::table('imagens')
