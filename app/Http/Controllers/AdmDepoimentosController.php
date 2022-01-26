@@ -9,7 +9,7 @@ use Intervention\Image\ImageManagerStatic as Image;
 
 ini_set('max_execution_time', 680);
 
-class AdmQueFazemosController extends Controller
+class AdmDepoimentosController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -23,29 +23,29 @@ class AdmQueFazemosController extends Controller
 
     public function index()
     {
-        $queFazemos = DB::table('que_fazemos')
+        $queFazemos = DB::table('depoimentos')
         ->where('site_id', $_SESSION['site_id'] )
         ->get();
 
-        return view('AdmQueFazemosLista',[
+        return view('AdmDepoimentosLista',[
             'itens' => $queFazemos
         ]);
     }
 
     public function novo()
     {
-        return view('AdmQueFazemosEdita');
+        return view('AdmDepoimentosEdita');
     }
 
     public function edita($id)
     {
-        $queFazemos = DB::table('que_fazemos')
+        $depoimento = DB::table('depoimentos')
         ->where('id', $id)
         ->where('site_id', $_SESSION['site_id'])
         ->first();
 
-        return view('AdmQueFazemosEdita', [
-            'item' => $queFazemos
+        return view('AdmDepoimentosEdita', [
+            'item' => $depoimento
         ]);
     }
 
@@ -56,38 +56,50 @@ class AdmQueFazemosController extends Controller
 
         $dados = [
             'ativo' => $request->ativo,
-            'titulo' => $request->titulo,
-            'link' => $request->link,
+            'nome' => $request->nome,
+            'empresa' => $request->empresa,
             'descricao' => $request->descricao,
+            'cargo' => $request->cargo
         ];
 
         if(!$request->id){
-            $queFazemos_id = DB::table('que_fazemos')->insertGetId([
+            $depoimento_id = DB::table('depoimentos')->insertGetId([
                 'site_id' => $_SESSION['site_id']
 ,            ]);
         }else{
-            $queFazemos_id = $request->id;
+            $depoimento_id = $request->id;
+        }
+
+        if ($request->hasFile('foto') && $request->file('foto')->isValid()) {
+            $imagem_foto = "{$id}_foto.webp";
+            $resizeImage = Image::make($request->file('foto')->getRealPath())->encode('webp', 100);
+            $resizeImage->save(storage_path('app/imagens/depoimentos/' . $imagem_foto));
+            $dados['foto'] = $imagem_foto;
+        }
+
+        if ($request->remover_foto == 'S') {
+            $dados['foto'] = "";
         }
 
 
-        DB::table('que_fazemos')
-        ->where('id', $queFazemos_id)
+        DB::table('depoimentos')
+        ->where('id', $depoimento_id)
         ->where('site_id', $_SESSION['site_id'])
         ->update($dados);
 
-        return redirect('admin/o-que-fazemos/')->with('mensagem_sucesso', 'Item Atualizado com Sucesso!');
+        return redirect('admin/depoimentos/')->with('mensagem_sucesso', 'Depoimento Atualizado com Sucesso!');
         die();
 
     }
 
     public function deletar($id)
     {
-        DB::table('que_fazemos')
+        DB::table('depoimentos')
         ->where('id', $id)
         ->where('site_id', $_SESSION['site_id'])
         ->delete();
 
-        return redirect('admin/o-que-fazemos/')->with('mensagem_sucesso', 'Item Excluido com Sucesso!');
+        return redirect('admin/depoimentos/')->with('mensagem_sucesso', 'Depoimento Excluido com Sucesso!');
         die();
     }
 

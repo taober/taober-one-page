@@ -276,7 +276,7 @@ return [
         ],
         [
             'text'        => 'Portifólios',
-            'url'         => 'admin/portifolio',
+            'url'         => 'admin/portifolios',
             'icon'        => 'fas fa-fw fa-network-wired',
             'label_color' => 'success',
         ],

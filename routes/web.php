@@ -41,8 +41,24 @@ Route::get('/admin', [App\Http\Controllers\DashboardController::class, 'index'])
     Route::post('/admin/quem-somos/salvar', [App\Http\Controllers\AdmQuemSomosController::class, 'salvar'])->name('salvar');
 
     Route::get('/admin/o-que-fazemos/', [App\Http\Controllers\AdmQueFazemosController::class, 'index'])->name('index');
-    Route::post('/admin/o-que-fazemos/edita', [App\Http\Controllers\AdmQueFazemosController::class, 'salvar'])->name('salvar');
+    Route::get('/admin/o-que-fazemos/novo', [App\Http\Controllers\AdmQueFazemosController::class, 'novo'])->name('novo');
+    Route::get('/admin/o-que-fazemos/{id}', [App\Http\Controllers\AdmQueFazemosController::class, 'edita'])->name('edita');
+    Route::get('/admin/o-que-fazemos/deletar/{id}', [App\Http\Controllers\AdmQueFazemosController::class, 'deletar'])->name('deletar');
     Route::post('/admin/o-que-fazemos/salvar', [App\Http\Controllers\AdmQueFazemosController::class, 'salvar'])->name('salvar');
+
+    Route::get('/admin/depoimentos/', [App\Http\Controllers\AdmDepoimentosController::class, 'index'])->name('index');
+    Route::get('/admin/depoimentos/novo', [App\Http\Controllers\AdmDepoimentosController::class, 'novo'])->name('novo');
+    Route::get('/admin/depoimentos/{id}', [App\Http\Controllers\AdmDepoimentosController::class, 'edita'])->name('edita');
+    Route::get('/admin/depoimentos/deletar/{id}', [App\Http\Controllers\AdmDepoimentosController::class, 'deletar'])->name('deletar');
+    Route::post('/admin/depoimentos/salvar', [App\Http\Controllers\AdmDepoimentosController::class, 'salvar'])->name('salvar');
+
+    Route::get('/admin/portifolios/', [App\Http\Controllers\AdmPortifoliosController::class, 'index'])->name('index');
+    Route::get('/admin/portifolios/novo', [App\Http\Controllers\AdmPortifoliosController::class, 'novo'])->name('novo');
+    Route::get('/admin/portifolios/{id}', [App\Http\Controllers\AdmPortifoliosController::class, 'edita'])->name('edita');
+    Route::get('/admin/portifolios/deletar/{id}', [App\Http\Controllers\AdmPortifoliosController::class, 'deletar'])->name('deletar');
+    Route::post('/admin/portifolios/salvar', [App\Http\Controllers\AdmPortifoliosController::class, 'salvar'])->name('salvar');
+    Route::post('/admin/portifolios/imagem-salvar', [App\Http\Controllers\AdmPortifoliosController::class, 'imagem_salvar'])->name('salvar');
+    Route::get('/admin/portifolios/imagem-deletar/{id}', [App\Http\Controllers\AdmPortifoliosController::class, 'imagem_deletar'])->name('salvar');
 
 Route::get('/admin/re-cache', [App\Http\Controllers\ImoveisController::class, 're_cache_image'])->name('re_cache_image');
 Route::get('/admin/imoveis', [App\Http\Controllers\ImoveisController::class, 'index'])->name('index');
