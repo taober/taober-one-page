@@ -114,15 +114,15 @@
                 <div class="row">
                     <div class="col-xl-8 col-lg-9 col-sm-10">
                         <div class="banner-content">
-                            <h4 class="sub-title wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="1s">Hey Dude!</h4>
-                            <h1 class="banner-title mt-10 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="2s"><span>You're</span> Using Free Lite Version of This Template</h1>
-                            <p>Please, consider purchasing full version to get all pages, features, assets and permission to remove footer credits.</p>
-                            <a class="banner-contact mt-25 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="2.3s" rel="nofollow" href="https://rebrand.ly/interior-ud">Get Full Version</a>
+                            <h4 class="sub-title wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="1s">{{ $bannerPrincipal->titulo }}</h4>
+                            <h1 class="banner-title mt-10 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="2s">{!! $bannerPrincipal->subtitulo !!}</h1>
+                            <p>Mais um texto AQUI</p>
+                            <a class="banner-contact mt-25 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="2.3s" rel="nofollow" href="https://rebrand.ly/interior-ud">Entre em contato!</a>
                         </div> <!-- banner content -->
                     </div>
                 </div> <!-- row -->
             </div> <!-- container -->
-            <div class="banner-image bg_cover" style="background-image: url(/_t/002/images/banner/banner-image.png)"></div>
+            <div class="banner-image bg_cover" style="background-image: url({{asset('/imagens/'.$bannerPrincipal->imagem)}})"></div>
         </div> <!-- header banner -->
 
     </header>
@@ -140,7 +140,7 @@
                             <img src="/_t/002/images/about/about-1.png" alt="About">
                         </div> <!-- single image -->
                         <div data-aos="fade-right" class="about-btn">
-                            <a class="main-btn" href="#"><span>27</span> Years Experience</a>
+                            <a class="main-btn" href="#"><span>25</span> Anos de Experiência</a>
                         </div>
                         <div class="single-image image-tow float-right">
                             <img src="/_t/002/images/about/about-2.png" alt="About">
@@ -149,11 +149,10 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="about-content mt-45">
-                        <h4 class="about-welcome">About Us </h4>
-                        <h3 class="about-title mt-10">Reasons to choose</h3>
-                        <p class="mt-25">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages
-                            <br> <br>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                        <a class="main-btn mt-25" href="#">learn more</a>
+                        <h4 class="about-welcome">{{$quemSomos->titulo}} </h4>
+                        <h3 class="about-title mt-10">{{$quemSomos->subtitulo}}</h3>
+                        <p class="mt-25">{!! $quemSomos->descricao !!}</p>
+                        {{-- <a class="main-btn mt-25" href="#">learn more</a> --}}
                     </div> <!-- about content -->
                 </div>
             </div> <!-- row -->

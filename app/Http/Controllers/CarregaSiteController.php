@@ -50,9 +50,13 @@ class CarregaSiteController extends Controller
             ->where('site_id', $site->id)
             ->get();
 
+        $banner_principal = DB::table('banners_principais')
+            ->where('site_id', $site->id)
+            ->first();
+
         $quem_somos = DB::table('quem_somos')
             ->where('site_id', $site->id)
-            ->get();
+            ->first();
 
         $que_fazemos = DB::table('que_fazemos')
             ->where('site_id', $site->id)
@@ -66,6 +70,7 @@ class CarregaSiteController extends Controller
             'site' => $site,
             'portifolios' => $portifolios,
             'quemSomos' => $quem_somos,
+            'bannerPrincipal' => $banner_principal,
             'queFazemos' => $que_fazemos,
             'depoimentos' => $depoimentos
         ]);
