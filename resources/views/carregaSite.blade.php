@@ -9,12 +9,12 @@
     <!--link rel=“canonical” href="https://{{ $_SERVER['HTTP_HOST'] }}"-->
     <meta name="Robots" content="index,follow" />
     <!-- description -->
-    <meta name="description" content="{{ strip_tags($emp->descricao_site) }}">
+    <meta name="description" content="{{ strip_tags($emp->titulo) }}">
     <!-- keywords -->
     <meta name="keywords" content="">
     <meta name="msvalidate.01" content="B06DF5F116B7B3AE061D957AF8B1B914" />
     <!-- Page Title -->
-    <title>{{ $emp->nome }}</title>
+    <title>{{ $emp->titulo }}</title>
     {!! $emp->google_search !!}
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('img/favicon.ico') }}">
@@ -187,7 +187,7 @@
             <ul>	<!-- SLIDE  -->
                 <li data-index="rs-4" data-transition="crossfade" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="default" data-easeout="default" data-masterspeed="default"  data-thumb=" "  data-rotate="0"  data-saveperformance="off"  data-title="Slide" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
                     <!-- MAIN IMAGE -->
-                    <img src="{{asset('/imagens/empreendimentos/'.$emp->fundo)}}"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="off" class="rev-slidebg" data-no-retina>
+                    <img src="{{asset('/imagens/empreendimentos/')}}"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="off" class="rev-slidebg" data-no-retina>
                     <!-- LAYERS -->
 
                     <!-- LAYER-overlay -->
@@ -214,7 +214,7 @@
                          data-paddingbottom="[0,0,0,0]"
                          data-paddingleft="[0,0,0,0]"
 
-                         style="z-index: 6; text-align:center; white-space: normal; font-size: 28px; line-height: 75px; font-weight: 300; color: #ffffff; letter-spacing: 0;font-family:'Raleway', sans-serif;">{{ $emp->nome }}</div>
+                         style="z-index: 6; text-align:center; white-space: normal; font-size: 28px; line-height: 75px; font-weight: 300; color: #ffffff; letter-spacing: 0;font-family:'Raleway', sans-serif;">Titulo</div>
 
                     <!-- LAYER NR. 3 -->
                     <div class="tp-caption tp-caption-sub tp-resizeme"
@@ -236,7 +236,7 @@
                          data-paddingbottom="[0,0,0,0]"
                          data-paddingleft="[0,0,0,0]"
 
-                         style="z-index: 7; white-space: normal; font-size: 24px; line-height: 34px; font-weight: 200; color: #ffffff; letter-spacing: 0;font-family:'Raleway', sans-serif;">{{ $emp->subtitulo }}</div>
+                         style="z-index: 7; white-space: normal; font-size: 24px; line-height: 34px; font-weight: 200; color: #ffffff; letter-spacing: 0;font-family:'Raleway', sans-serif;">Sub Titulo</div>
                 </li>
 
             </ul>
@@ -265,20 +265,20 @@
         <div class="row">
             <div class="col-12 col-md-5 offset-md-1 pr-md-5 mb-5 mb-md-0 align-items-center">
                 <div class="about-text text-center text-md-left">
-                    <h1 class="main-heading text-black font-weight-bold mb-2">{{ $emp->descricao_titulo }}</h1>
-                    <p class="sub-heading">{!! str_replace('http://bit.ly', 'https://bit.ly', $emp->descricao_texto)  !!}</p>
+                    <h1 class="main-heading text-black font-weight-bold mb-2">{{ $emp->titulo }}</h1>
+                    <p class="sub-heading">{!! str_replace('http://bit.ly', 'https://bit.ly', 'este')  !!}</p>
                 </div>
             </div>
             <div class="col-12 col-md-6 p-0">
-                <div class="about-img" style="background-image: url({{asset('/imagens/oempreendimento/'.$emp->descricao_fundo)}}); height: 100%; background-size: cover; background-position: center;">
-                    <!--img src="{{asset('/imagens/oempreendimento/'.$emp->descricao_fundo)}}" alt="ABOUT MAGE"-->
+                <div class="about-img" style="background-image: url({{asset('/imagens/oempreendimento/')}}); height: 100%; background-size: cover; background-position: center;">
+                    <!--img src="{{asset('/imagens/oempreendimento/')}}" alt="ABOUT MAGE"-->
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-@if($emp->detalhe_ativo == 1)
+@if(2 == 1)
 <section id="detalhes" class="about">
     <div class="container-fluid">
         <div class="row">
@@ -302,8 +302,8 @@
     <div class="container">
         <div class="row">
             <div class="col-12 text-center">
-                <h1 class="main-heading heading">{{ $emp->tituloimagens }}</h1>
-                <div class="sub-heading sub-width mb-60 mt-4 mt-md-0">{!! $emp->textoimagens !!}</div>
+                <h1 class="main-heading heading">Imagens</h1>
+                <div class="sub-heading sub-width mb-60 mt-4 mt-md-0">Imagens sub</div>
             </div>
         </div>
         <div id="js-grid-imagens" class="cbp cbp-l-grid-mosaic d-none d-md-block">
@@ -345,8 +345,8 @@
     <div class="container">
         <div class="row">
             <div class="col-12 text-center">
-                <h1 class="main-heading heading">{{ $emp->tituloplantas }}</h1>
-                <div class="sub-heading sub-width mb-60 mt-4 mt-md-0">{!! $emp->textoplantas !!}</div>
+                <h1 class="main-heading heading">Plantas</h1>
+                <div class="sub-heading sub-width mb-60 mt-4 mt-md-0">Plantas sub</div>
             </div>
         </div>
         <div id="js-grid-plantas" class="cbp cbp-l-grid-mosaic d-none d-md-block">
@@ -413,7 +413,7 @@
             <div class="col-lg-6 col-md-6">
                 <form class="form-contato" method="POST" id="form-contato" action="/contato-envia"> 
                     @csrf
-                    <input type="hidden" name="empreendimento" id="empreendimento" value="{{ $emp->nome }}"><br>
+                    <input type="hidden" name="empreendimento" id="empreendimento" value="{{ $emp->titulo }}"><br>
                     <label for="nome">Nome</label><br>
                     <input type="text" name="nome" id="nome"><br>
                     <label for="email">E-mail</label><br>

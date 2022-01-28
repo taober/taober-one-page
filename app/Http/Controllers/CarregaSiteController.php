@@ -11,63 +11,63 @@ use Intervention\Image\Image;
 use Intervention\Image\Filters\FilterInterface;
 use Illuminate\Support\Facades\Log;
 
-class SiteController extends Controller
+class CarregaSiteController extends Controller
 {
     public function index()
     {
 
         $url = $_SERVER['HTTP_HOST'];
 
-        //->where('dominio',$id)
+        // //->where('dominio',$id)
 
-        $id = 70; //70;//402;//404;
-        $emp = DB::table('empreendimentos')
-            ->where('dominio', 'like', '%' . $url . '%')
-            ->where('ativo',1)
+        // $id = 70; //70;//402;//404;
+        $site = DB::table('sites')
+            ->where('id', $_SESSION['site_id'])
             ->first();
 
-        if(!$emp){
-            die('<h1>Im�vel N�o Encontrado</h1>');
-        }
-
-        $imagens = DB::table('imagens')
-            ->where('imagens.empreendimento_id', $emp->id)
-            ->get();
-
-        $plantas = DB::table('plantas')
-            ->where('plantas.empreendimento_id', $emp->id)
-            ->get();
-        //Log::info('e viu o site.');
-        return view('site', [
-            'emp' => $emp,
-            'imagens' => $imagens,
-            'plantas' => $plantas
-        ]);
+       
     }
     
-    public function preview($id)
+    public function carrega_site($id)
     {
 
-        $emp = DB::table('empreendimentos')
+        $site = DB::table('sites')
             ->where('id',$id)
             ->first();
 
-        if(!$emp){
-            die('<h1>Im�vel N�o Encontrado</h1>');
+        $template = DB::table('templates')
+        ->where('id', $site->template_id)
+        ->first();
+        
+
+        if(!$site){
+            die('<h1>Site Não Encontrado</h1>');
         }
 
-        $imagens = DB::table('imagens')
-            ->where('imagens.empreendimento_id', $emp->id)
+        $portifolios = DB::table('portifolios')
+            //->leftJoin('imagens', 'portifolios.id', '=', 'imagens.ref_id')
+            //->where('imagens.ref_nome', 'portifolios')
+            ->where('site_id', $site->id)
             ->get();
 
-        $plantas = DB::table('plantas')
-            ->where('plantas.empreendimento_id', $emp->id)
+        $quem_somos = DB::table('quem_somos')
+            ->where('site_id', $site->id)
             ->get();
-        //Log::info('e viu o site.');
-        return view('site', [
-            'emp' => $emp,
-            'imagens' => $imagens,
-            'plantas' => $plantas
+
+        $que_fazemos = DB::table('que_fazemos')
+            ->where('site_id', $site->id)
+            ->get();
+
+        $depoimentos = DB::table('depoimentos')
+            ->where('site_id', $site->id)
+            ->get();
+
+        return view('_t/'.$template->dir.'/index', [
+            'site' => $site,
+            'portifolios' => $portifolios,
+            'quemSomos' => $quem_somos,
+            'queFazemos' => $que_fazemos,
+            'depoimentos' => $depoimentos
         ]);
     }    
 

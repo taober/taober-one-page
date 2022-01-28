@@ -109,6 +109,7 @@
                         </div>
                     </form>
                 </div>
+                @if(isset($item->id))
                 <div class="col-12">
                     <form action="/admin/portifolios/imagem-salvar" method="post" enctype="multipart/form-data"> 
                         <input type="hidden" name="portifolio_id" value="{{ $item->id ?? '' }}">
@@ -170,6 +171,7 @@
                         </div>
                     </form>
                 </div>
+                @endif 
             </div>
         </div>
         
