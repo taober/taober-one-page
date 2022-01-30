@@ -359,8 +359,8 @@
             <div class="row justify-content-center">
                 <div class="col-lg-6">
                     <div class="section-title text-center pb-20">
-                        <h5 class="sub-title mb-15">Contact us</h5>
-                        <h2 class="title">Get In touch</h2>
+                        <h5 class="sub-title mb-15">Contatos</h5>
+                        <h2 class="title">Respondemos rapidinho :)</h2>
                     </div> <!-- section title -->
                 </div>
             </div> <!-- row -->
@@ -371,38 +371,38 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="single-form form-group">
-                                        <input type="text" name="name" placeholder="Your Name" data-error="Name is required." required="required">
+                                        <input type="text" name="name" placeholder="Seu nome" data-error="Name is required." required="required">
                                         <div class="help-block with-errors"></div>
                                     </div> <!-- single form -->
                                 </div>
                                 <div class="col-md-6">
                                     <div class="single-form form-group">
-                                        <input type="email" name="email" placeholder="Your Email" data-error="Valid email is required." required="required">
+                                        <input type="email" name="email" placeholder="Seu emial" data-error="Valid email is required." required="required">
                                         <div class="help-block with-errors"></div>
                                     </div> <!-- single form -->
                                 </div>
                                 <div class="col-md-6">
                                     <div class="single-form form-group">
-                                        <input type="text" name="subject" placeholder="Subject" data-error="Subject is required." required="required">
+                                        <input type="text" name="subject" placeholder="Assunto" data-error="Subject is required." required="required">
                                         <div class="help-block with-errors"></div>
                                     </div> <!-- single form -->
                                 </div>
                                 <div class="col-md-6">
                                     <div class="single-form form-group">
-                                        <input type="text" name="phone" placeholder="Phone" data-error="Phone is required." required="required">
+                                        <input type="text" name="phone" placeholder="Telefone" data-error="Phone is required." required="required">
                                         <div class="help-block with-errors"></div>
                                     </div> <!-- single form -->
                                 </div>
                                 <div class="col-md-12">
                                     <div class="single-form form-group">
-                                        <textarea placeholder="Your Mesaage" name="message" data-error="Please,leave us a message." required="required"></textarea>
+                                        <textarea placeholder="Sua nensagem" name="message" data-error="Please,leave us a message." required="required"></textarea>
                                         <div class="help-block with-errors"></div>
                                     </div> <!-- single form -->
                                 </div>
                                 <p class="form-message"></p>
                                 <div class="col-md-12">
                                     <div class="single-form form-group text-center">
-                                        <button type="submit" class="main-btn">send message</button>
+                                        <button type="submit" class="main-btn">Enviar mensagem</button>
                                     </div> <!-- single form -->
                                 </div>
                             </div> <!-- row -->
@@ -462,22 +462,35 @@
                                         </div>
                                     </div> <!-- single info -->
                                 </li>
+                                @if($site->endereco != '')
                                 <li>
                                     <div class="single-info">
                                         <div class="info-icon">
                                             <i class="lni-map"></i>
                                         </div>
                                         <div class="info-content">
-                                            <p>1234 Avenue New York, US</p>
+                                            <p>{{$site->endereco}}</p>
                                         </div>
                                     </div> <!-- single info -->
                                 </li>
+                                @endif
                             </ul>
                             <ul class="footer-social mt-20">
-                                <li><a href="#"><i class="lni-facebook-filled"></i></a></li>
-                                <li><a href="#"><i class="lni-twitter-original"></i></a></li>
-                                <li><a href="#"><i class="lni-google"></i></a></li>
-                                <li><a href="#"><i class="lni-instagram"></i></a></li>
+                                @if($site->social_facebook != '')
+                                    <li><a href="#" title="Facebook"><i class="lni-facebook-filled"></i></a></li>
+                                @endif
+                                @if($site->social_twitter != '')
+                                    <li><a href="#" title="Twitter"><i class="lni-twitter-original"></i></a></li>
+                                @endif
+                                @if($site->social_linkedin != '')
+                                    <li><a href="#" title="Linkedin"><i class="lni-linkedin"></i></a></li>
+                                @endif
+                                @if($site->social_google != '')
+                                    <li><a href="#" title="Google"><i class="lni-google"></i></a></li>
+                                @endif
+                                @if($site->social_instagram != '')
+                                    <li><a href="#" title="Instagram"><i class="lni-instagram"></i></a></li>
+                                @endif
                             </ul>
                         </div> <!-- footer logo -->
                     </div>
