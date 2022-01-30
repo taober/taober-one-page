@@ -18,13 +18,9 @@ class CarregaSiteController extends Controller
 
         $url = $_SERVER['HTTP_HOST'];
 
-        // //->where('dominio',$id)
-
-        // $id = 70; //70;//402;//404;
         $site = DB::table('sites')
             ->where('id', $_SESSION['site_id'])
             ->first();
-
        
     }
     
@@ -35,9 +31,19 @@ class CarregaSiteController extends Controller
             ->where('id',$id)
             ->first();
 
+
+
+        if($site->ativo == 0){
+            return view('_t/000/index', [
+                'site' => $site
+            ]);
+        }
+
         $template = DB::table('templates')
         ->where('id', $site->template_id)
-        ->first();
+            ->first();
+
+
         
 
         if(!$site){
