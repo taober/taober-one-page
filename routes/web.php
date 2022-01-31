@@ -30,7 +30,8 @@ Auth::routes();
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/admin', [App\Http\Controllers\DashboardController::class, 'index'])->name('index');
 
-    
+    Route::get('/admin/taober/backup_database', [App\Http\Controllers\AdmTaoberController::class, 'backup_database'])->name('index');
+
 
     Route::get('/admin/site/', [App\Http\Controllers\AdmSiteController::class, 'index'])->name('index');
     Route::post('/admin/site/salvar', [App\Http\Controllers\AdmSiteController::class, 'salvar'])->name('salvar');

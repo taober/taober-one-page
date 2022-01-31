@@ -15,13 +15,13 @@ class CarregaSiteController extends Controller
 {
     public function index()
     {
-
         $url = $_SERVER['HTTP_HOST'];
+        dd($url);
 
         $site = DB::table('sites')
             ->where('id', $_SESSION['site_id'])
             ->first();
-       
+        $this->carrega_site($site->id);
     }
     
     public function carrega_site($id)
