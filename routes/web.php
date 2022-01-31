@@ -21,7 +21,7 @@ Route::get('/phpconfig', function () {
 });
 
 Route::get('/', [App\Http\Controllers\CarregaSiteController::class,'index']);
-Route::get('/preview-site/{id}', [App\Http\Controllers\CarregaSiteController::class, 'carrega_site']);
+Route::get('/preview-site/{id}', [App\Http\Controllers\CarregaSiteController::class, 'preview_site']);
 Route::post('/contato-envia', [App\Http\Controllers\CarregaSiteController::class, 'contato_envia'])->name('contato_envia');
 
 

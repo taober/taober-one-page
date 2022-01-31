@@ -25,17 +25,7 @@ class CarregaSiteController extends Controller
             die('<h1>Site Não Encontrado</h1>');
         }
 
-        $this->carrega_site($site->id);
-    }
-    
-    public function carrega_site($id)
-    {
-
-        $site = DB::table('sites')
-            ->where('id',$id)
-            ->first();
-
-        if($site->ativo == 0){
+        if ($site->ativo == 0) {
             return view('_t/000/index', [
                 'site' => $site
             ]);
@@ -45,12 +35,53 @@ class CarregaSiteController extends Controller
         ->where('id', $site->template_id)
             ->first();
 
+        $portifolios = DB::table('portifolios')
+        //->leftJoin('imagens', 'portifolios.id', '=', 'imagens.ref_id')
+        //->where('imagens.ref_nome', 'portifolios')
+        ->where('site_id', $site->id)
+            ->get();
 
-        
+        $banner_principal = DB::table('banners_principais')
+        ->where('site_id', $site->id)
+            ->first();
 
-        if(!$site){
+        $quem_somos = DB::table('quem_somos')
+        ->where('site_id', $site->id)
+            ->first();
+
+        $que_fazemos = DB::table('que_fazemos')
+        ->where('site_id', $site->id)
+            ->get();
+
+        $depoimentos = DB::table('depoimentos')
+        ->where('site_id', $site->id)
+            ->get();
+
+        return view('_t/' . $template->dir . '/index', [
+            'site' => $site,
+            'portifolios' => $portifolios,
+            'quemSomos' => $quem_somos,
+            'bannerPrincipal' => $banner_principal,
+            'queFazemos' => $que_fazemos,
+            'depoimentos' => $depoimentos
+        ]);
+
+    }
+
+    public function preview_site($id)
+    {
+
+        $site = DB::table('sites')
+            ->where('id', $id)
+            ->first();
+
+        if (!$site) {
             die('<h1>Site Não Encontrado</h1>');
         }
+
+        $template = DB::table('templates')
+            ->where('id', $site->template_id)
+            ->first();
 
         $portifolios = DB::table('portifolios')
             //->leftJoin('imagens', 'portifolios.id', '=', 'imagens.ref_id')
@@ -74,7 +105,7 @@ class CarregaSiteController extends Controller
             ->where('site_id', $site->id)
             ->get();
 
-        return view('_t/'.$template->dir.'/index', [
+        return view('_t/' . $template->dir . '/index', [
             'site' => $site,
             'portifolios' => $portifolios,
             'quemSomos' => $quem_somos,
@@ -82,7 +113,7 @@ class CarregaSiteController extends Controller
             'queFazemos' => $que_fazemos,
             'depoimentos' => $depoimentos
         ]);
-    }    
+    }
 
     public function contato_envia(Request $request)
     {
