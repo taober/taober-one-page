@@ -16,11 +16,15 @@ class CarregaSiteController extends Controller
     public function index()
     {
         $url = $_SERVER['HTTP_HOST'];
-        dd($url);
 
         $site = DB::table('sites')
-            ->where('id', $_SESSION['site_id'])
+            ->where('dominio', $url)
             ->first();
+
+        if (!$site) {
+            die('<h1>Site Não Encontrado</h1>');
+        }
+
         $this->carrega_site($site->id);
     }
     
@@ -30,8 +34,6 @@ class CarregaSiteController extends Controller
         $site = DB::table('sites')
             ->where('id',$id)
             ->first();
-
-
 
         if($site->ativo == 0){
             return view('_t/000/index', [
