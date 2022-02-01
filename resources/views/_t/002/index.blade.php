@@ -49,19 +49,19 @@
     <header id="home" class="header-area pt-100">
 
         <div class="shape header-shape-one">
-            <img src="/_t/002/images/banner/shape/shape-1.png" alt="shape">
+            <span></span>
         </div> <!-- header shape one -->
 
         <div class="shape header-shape-tow animation-one">
-            <img src="/_t/002/images/banner/shape/shape-2.png" alt="shape">
+            <span></span>
         </div> <!-- header shape tow -->
 
         <div class="shape header-shape-three animation-one">
-            <img src="/_t/002/images/banner/shape/shape-3.png" alt="shape">
+            <span></span>
         </div> <!-- header shape three -->
 
         <div class="shape header-shape-fore">
-            <img src="/_t/002/images/banner/shape/shape-4.png" alt="shape">
+            <span></span>
         </div> <!-- header shape three -->
 
         <div class="navigation-bar">
@@ -315,13 +315,16 @@
 
     <section id="testimonial" class="testimonial-area pt-130 pb-130">
         <div class="shape shape-one">
-            <img src="/_t/002/images/testimonial/shape.png" alt="testimonial">
+            <span></span>
+            {{-- <img src="/_t/002/images/testimonial/shape.png" alt="testimonial"> --}}
         </div>
         <div class="shape shape-tow">
-            <img src="/_t/002/images/testimonial/shape.png" alt="testimonial">
+            <span></span>
+            {{-- <img src="/_t/002/images/testimonial/shape.png" alt="testimonial"> --}}
         </div>
         <div class="shape shape-three">
-            <img src="/_t/002/images/testimonial/shape.png" alt="testimonial">
+            <span></span>
+            {{-- <img src="/_t/002/images/testimonial/shape.png" alt="testimonial"> --}}
         </div>
         <div class="container">
             <div class="testimonial-bg bg_cover pt-80 pb-80" style="background-image: url(/_t/002/images/testimonial/testimonial-bg.jpg)">
@@ -439,7 +442,7 @@
                     <div class="col-lg-3 col-md-4 col-sm-8">
                         <div class="footer-logo mt-50">
                             <a href="#">
-                                <img src="/_t/002/images/logo.png" alt="Logo">
+                                <img src="{{asset('/imagens/'.$site->logo)}}" alt="Logo">
                             </a>
                             <ul class="footer-info">
                                 <li>
