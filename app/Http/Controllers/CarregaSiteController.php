@@ -15,11 +15,13 @@ class CarregaSiteController extends Controller
 {
     public function index()
     {
-        $url = $_SERVER['HTTP_HOST'];
+        $url = parse_url($_SERVER['HTTP_HOST'])['host'];
 
         $site = DB::table('sites')
             ->where('dominio', $url)
             ->first();
+
+            
 
         if (!$site) {
             die('<h1>Site Não Encontrado</h1>');
