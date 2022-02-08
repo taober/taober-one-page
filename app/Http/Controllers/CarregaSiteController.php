@@ -151,7 +151,7 @@ class CarregaSiteController extends Controller
     public function contato_envia(Request $request)
     {
 
-        $url = parse_url($_SERVER['HTTP_HOST'])['host'];
+        $url = explode(':', str_ireplace('www.', '', $_SERVER['HTTP_HOST']))[0]; 
 
         $site = DB::table('sites')
             ->join('users', 'users.id', '=', 'sites.usuario_id')
