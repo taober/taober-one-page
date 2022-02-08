@@ -17,7 +17,7 @@ class CarregaSiteController extends Controller
 {
     public function index()
     {
-        $url = parse_url($_SERVER['HTTP_HOST'])['host'];
+        $url = explode(':',str_ireplace('www.', '', $_SERVER['HTTP_HOST']))[0]; 
 
         $site = DB::table('sites')
             ->where('dominio', $url)
@@ -37,26 +37,42 @@ class CarregaSiteController extends Controller
         ->where('id', $site->template_id)
             ->first();
 
-        $portifolios = DB::table('portifolios')
-        //->leftJoin('imagens', 'portifolios.id', '=', 'imagens.ref_id')
-        //->where('imagens.ref_nome', 'portifolios')
-        ->where('site_id', $site->id)
-            ->get();
 
+        // BANNER PRINCIPAL
         $banner_principal = DB::table('banners_principais')
         ->where('site_id', $site->id)
             ->first();
+        $banner_principal->imagens = DB::table('imagens')
+        ->where('ref_id', $banner_principal->id)
+            ->where('ref_nome', 'banner-principal')
+            ->orderBy('favorita', 'desc')
+            ->limit(1)
+            ->get();
+
+
+
+        // PORTIFOLIOS
+        $portifolios = Portifolios::where('site_id', $site->id)->get();
+        foreach ($portifolios as &$item) {
+            $item->imagens = $item->imagens()->orderBy('favorita', 'desc')->get();
+        }
+
 
         $quem_somos = DB::table('quem_somos')
-        ->where('site_id', $site->id)
+            ->where('site_id', $site->id)
             ->first();
+        $quem_somos->imagens = DB::table('imagens')
+            ->where('ref_id', $quem_somos->id)
+            ->where('ref_nome', 'quem-somos')
+            ->limit(2)
+            ->get();
 
         $que_fazemos = DB::table('que_fazemos')
-        ->where('site_id', $site->id)
+            ->where('site_id', $site->id)
             ->get();
 
         $depoimentos = DB::table('depoimentos')
-        ->where('site_id', $site->id)
+            ->where('site_id', $site->id)
             ->get();
 
         return view('_t/' . $template->dir . '/index', [
