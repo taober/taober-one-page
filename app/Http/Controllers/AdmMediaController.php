@@ -43,6 +43,7 @@ class AdmMediaController extends Controller
             'titulo' => $titulo
         ];
 
+        //dd($request->file('galeria_imagem')->isValid());
 
         
         if ($request->hasFile('galeria_imagem') && $request->file('galeria_imagem')->isValid()) {

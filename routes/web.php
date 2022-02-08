@@ -30,13 +30,17 @@ Auth::routes();
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/admin', [App\Http\Controllers\DashboardController::class, 'index'])->name('index');
 
-
-
     Route::post('/admin/media/imagem-salvar', [App\Http\Controllers\AdmMediaController::class, 'imagem_salvar'])->name('media-imagem-salvar');
     Route::get('/admin/media/imagem-favoritar/{id}', [App\Http\Controllers\AdmMediaController::class, 'imagem_favoritar'])->name('media-imagem-favoritar');
+    Route::get('/admin/media/imagem-deletar/{id}', [App\Http\Controllers\AdmMediaController::class, 'imagem_deletar'])->name('media-imagem-favoritar');
 
     Route::get('/admin/taober/backup_database', [App\Http\Controllers\AdmTaoberController::class, 'backup_database'])->name('index');
 
+    Route::get('/admin/sites/', [App\Http\Controllers\AdmSitesController::class, 'index'])->name('index');
+    Route::get('/admin/sites/novo', [App\Http\Controllers\AdmSitesController::class, 'novo'])->name('novo');
+    Route::get('/admin/sites/{id}', [App\Http\Controllers\AdmSitesController::class, 'edita'])->name('edita');
+    Route::get('/admin/sites/deletar/{id}', [App\Http\Controllers\AdmSitesController::class, 'deletar'])->name('deletar');
+    Route::post('/admin/sites/salvar', [App\Http\Controllers\AdmSitesController::class, 'salvar'])->name('salvar');
 
     Route::get('/admin/site/', [App\Http\Controllers\AdmSiteController::class, 'index'])->name('index');
     Route::post('/admin/site/salvar', [App\Http\Controllers\AdmSiteController::class, 'salvar'])->name('salvar');
@@ -75,41 +79,3 @@ Route::get('/admin/imoveis/preview/{id}', [App\Http\Controllers\SiteController::
 Route::post('/admin/imoveis/upload', [App\Http\Controllers\ImoveisController::class, 'upload'])->name('upload');
 Route::post('/admin/imoveis/apagar-imagem', [App\Http\Controllers\ImoveisController::class, 'apagarImagem'])->name('apagarImagem');
 Route::post('/admin/imoveis/salvar', [App\Http\Controllers\ImoveisController::class, 'salvar'])->name('salvar');
-
-
-
-
-
-/*
-ACERTOS BANCO
-*********************************************************************************
-
-UPDATE detalhes d INNER JOIN empreendimentos e ON e.id = d.empreendimento_id
-SET
-e.detalhe_titulo = d.titulo, 
-e.detalhe_texto = d.texto, 
-e.detalhe_titulo_2 = d.titulo2, 
-e.detalhe_texto_2 = d.texto2, 
-e.detalhe_fundo = d.fundo, 
-e.detalhe_ativo = d.ativo ;
-WHERE e.id = 130;
-
-UPDATE descricoes d INNER JOIN empreendimentos e ON e.id = d.empreendimento_id
-SET
-e.descricao_titulo = d.titulo, 
-e.descricao_texto = d.texto, 
-e.descricao_titulo_2 = d.titulo2, 
-e.descricao_texto_2 = d.texto2, 
-e.descricao_fundo = d.fundo;
-WHERE e.id = 130;
-
-update plantas set imagem =  replace(imagem, '/img/plantas/','') ;
-update imagens set imagem =  replace(imagem, '/img/imagens/','') ;
-
-
-LARAVEL
-************
-composer update
-php artisan storage:link
-
-*/

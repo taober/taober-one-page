@@ -1,6 +1,11 @@
 @extends('adminlte::page')
 
-@section('title', 'Imóveis')
+@section('title', 'Taober One Page')
+
+@section('css')
+    <link rel="stylesheet" href="/vendor/summernote/summernote-bs4.min.css">
+    <link rel="stylesheet" href="/css/taober.css">
+@stop
 
 @section('content_header')
     <h1>Depoimentos</h1>

@@ -239,25 +239,25 @@ return [
         // Sidebar items:
         ['header' => 'ADMIN'],
         [
-            'text'        => 'Site',
+            'text'        => 'Meu Site',
             'url'         => 'admin/site',
             'icon'        => 'fas fa-fw fa-globe',
             'label_color' => 'success',
         ],
         [
-            'text'        => 'Banner principal',
+            'text'        => 'Área principal',
             'url'         => 'admin/banner-principal',
             'icon'        => 'fas fa-fw fa-image',
             'label_color' => 'success',
         ],
         [
-            'text'        => 'Quem Somos',
+            'text'        => 'Quem somos',
             'url'         => 'admin/quem-somos',
             'icon'        => 'fas fa-fw fa-users',
             'label_color' => 'success',
         ],
         [
-            'text'        => 'O Que Fazemos',
+            'text'        => 'O que fazemos',
             'url'         => 'admin/o-que-fazemos',
             'icon'        => 'fas fa-fw fa-briefcase',
             'label_color' => 'success',
@@ -268,22 +268,16 @@ return [
             'icon'        => 'fas fa-fw fa-comment-alt',
             'label_color' => 'success',
         ],
-        [
-            'text'        => 'Pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'fas fa-fw fa-file-code',
-            'label_color' => 'success',
-        ],
+        // [
+        //     'text'        => 'Pages',
+        //     'url'         => 'admin/pages',
+        //     'icon'        => 'fas fa-fw fa-file-code',
+        //     'label_color' => 'success',
+        // ],
         [
             'text'        => 'Portifólios',
             'url'         => 'admin/portifolios',
             'icon'        => 'fas fa-fw fa-network-wired',
-            'label_color' => 'success',
-        ],
-        [
-            'text'        => 'Imoveis',
-            'url'         => 'admin/imoveis',
-            'icon'        => 'far fa-fw fa-building',
             'label_color' => 'success',
         ],
         ['header' => 'account_settings'],
@@ -334,6 +328,16 @@ return [
     */
 
     'plugins' => [
+        'bsCustomFileInput' => [
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/bs-custom-file-input/bs-custom-file-input.min.js',
+                ],
+            ]
+        ],
         'Datatables' => [
             'active' => true,
             'files' => [

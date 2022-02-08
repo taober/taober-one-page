@@ -1,14 +1,14 @@
 @extends('adminlte::page')
 
-@section('title', 'Imóveis')
-
-@section('content_header')
-    <h1> Portifolio</h1>
-@stop
+@section('title', 'Taober One Page')
 
 @section('css')
     <link rel="stylesheet" href="/vendor/summernote/summernote-bs4.min.css">
     <link rel="stylesheet" href="/css/taober.css">
+@stop
+
+@section('content_header')
+    <h1> Portifólio</h1>
 @stop
 
 @section('content')
@@ -45,7 +45,7 @@
                                     </div>
                                 @endif                 
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-12">
                                         <div class="row">
                                             <div class="col-3">
                                                 <div class="form-group">
@@ -62,37 +62,16 @@
                                                     <input type="text" class="form-control" id="titulo" name="titulo" placeholder="titulo" value="{{ $item->titulo ?? '' }}">
                                                 </div>
                                             </div>
-                                            <div class="col-12">
+                                            <div class="col-6">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Empresa</label>
                                                     <input type="text" class="form-control" id="empresa" name="empresa" placeholder="Empresa" value="{{ $item->empresa ?? '' }}">
                                                 </div>
                                             </div>
-                                            <div class="col-12">
+                                            <div class="col-6">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Link</label>
                                                     <input type="text" class="form-control" id="link" name="link" placeholder="link" value="{{ $item->link ?? '' }}">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <div class="form-group">
-                                                    <label for="logo">Foto</label>
-                                                    @if(!empty($item->imagem))
-                                                        <div class="adm-img box-img">
-                                                            <img src="/imagens/portifolios/{{ $item->imagem }}" alt="" width="auto" height="100%">
-                                                        </div>
-                                                    @endif
-                                                    <div class="input-group">
-                                                        <div class="custom-file">
-                                                            <input type="file" class="custom-file-input2" id="imagem" name="imagem">
-                                                            <label class="custom-file-label" for="imagem">Escolha a Imagem</label>
-                                                        </div>
-                                                    </div>
-                                                    <input type="checkbox" name="remover_imagem" value="S"> Remover Imagem
                                                 </div>
                                             </div>
                                         </div>

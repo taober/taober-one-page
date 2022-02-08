@@ -1,28 +1,29 @@
 @extends('adminlte::page')
 
-@section('title', 'Taober One Page')
+@section('title', 'Imóveis')
+
+@section('content_header')
+    <h1> Site</h1>
+@stop
 
 @section('css')
     <link rel="stylesheet" href="/vendor/summernote/summernote-bs4.min.css">
     <link rel="stylesheet" href="/css/taober.css">
 @stop
 
-@section('content_header')
-    <h1> Depoimento</h1>
-@stop
-
 @section('content')
 
     <section class="content">
-        <form action="/admin/depoimentos/salvar" method="post" enctype="multipart/form-data"> 
-            <input type="hidden" name="id" value="{{ $item->id ?? '' }}">
-            @csrf  
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12">
+        
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <form action="/admin/site/salvar" method="post" enctype="multipart/form-data"> 
+                        <input type="hidden" name="id" value="{{ $item->id ?? '' }}">
+                        @csrf  
                         <div class="card card-primary card-outline">
                             <div class="card-header">
-                                <h3 class="card-title">Edite um Depoimento</h3>
+                                <h3 class="card-title">Edite um Site</h3>
                                 <div class="card-tools">
                                     @if(isset($item->id))
                                         <a href="/admin/site/preview/{{ $item->id}}" target="_blank">
@@ -57,41 +58,20 @@
                                             </div>
                                             <div class="col-9">
                                                 <div class="form-group">
-                                                    <label for="exampleInputEmail1">Autor</label>
-                                                    <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" value="{{ $item->nome ?? '' }}">
+                                                    <label for="exampleInputEmail1">Titulo</label>
+                                                    <input type="text" class="form-control" id="titulo" name="titulo" placeholder="titulo" value="{{ $item->titulo ?? '' }}">
                                                 </div>
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-group">
-                                                    <label for="exampleInputEmail1">Empresa</label>
-                                                    <input type="text" class="form-control" id="empresa" name="empresa" placeholder="Empresa" value="{{ $item->empresa ?? '' }}">
+                                                    <label for="exampleInputEmail1">Domínio</label>
+                                                    <input type="text" class="form-control" id="dominio" name="dominio" placeholder="Dominio" value="{{ $item->dominio ?? '' }}">
                                                 </div>
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-group">
-                                                    <label for="exampleInputEmail1">Cargo</label>
-                                                    <input type="text" class="form-control" id="cargo" name="cargo" placeholder="cargo" value="{{ $item->cargo ?? '' }}">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <div class="form-group">
-                                                    <label for="logo">Foto</label>
-                                                    @if(!empty($item->foto))
-                                                        <div class="adm-img box-img">
-                                                            <img src="/imagens/depoimentos/{{ $item->foto }}" alt="" width="auto" height="100%">
-                                                        </div>
-                                                    @endif
-                                                    <div class="input-group">
-                                                        <div class="custom-file">
-                                                            <input type="file" class="custom-file-input2" id="foto" name="foto">
-                                                            <label class="custom-file-label" for="foto">Escolha a Imagem</label>
-                                                        </div>
-                                                    </div>
-                                                    <input type="checkbox" name="remover_foto" value="S"> Remover Foto
+                                                    <label for="exampleInputEmail1">Usuário</label>
+                                                    <input type="text" class="form-control" id="usuario" name="usuario" placeholder="usuario" value="{{ $item->link ?? '' }}">
                                                 </div>
                                             </div>
                                         </div>
@@ -103,14 +83,12 @@
                                         </div>
                                     </div>
                                 </div>
-                                
-                                
                             </div>
                             <!-- /.card-body -->
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
-        </form>
+        </div>
     </section>
 @stop

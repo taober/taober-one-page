@@ -1,14 +1,14 @@
 @extends('adminlte::page')
 
-@section('title', 'Imóveis')
-
-@section('content_header')
-    <h1> Banner Principal</h1>
-@stop
+@section('title', 'Taober One Page')
 
 @section('css')
     <link rel="stylesheet" href="/vendor/summernote/summernote-bs4.min.css">
     <link rel="stylesheet" href="/css/taober.css">
+@stop
+
+@section('content_header')
+    <h1> Área principal</h1>
 @stop
 
 @section('content')
@@ -45,7 +45,16 @@
                                     </div>
                                 @endif                   
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-2">
+                                        <div class="form-group">
+                                            <label>Ativo</label>
+                                            <select class="form-control" name="ativo">
+                                                <option value="1">SIM</option>
+                                                <option value="0" {{ isset($banner->ativo ) && $banner->ativo == '0' ? 'selected' : '' }}>NÂO</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-10">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Titulo</label>
                                             <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Titulo" value="{{ $banner->titulo ?? '' }}">
@@ -57,23 +66,12 @@
                                             <input type="text" class="form-control" id="subtitulo" name="subtitulo" placeholder="Sub-titulo" value="{{ $banner->subtitulo ?? ''  }}">
                                         </div>
                                     </div>
-                                    <div class="col-2">
-                                        <div class="form-group">
-                                            <label>Ativo</label>
-                                            <select class="form-control" name="ativo">
-                                                <option value="1">SIM</option>
-                                                <option value="0" {{ isset($banner->ativo ) && $banner->ativo == '0' ? 'selected' : '' }}>NÂO</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-10">
+                                    <div class="col-6">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Link</label>
                                             <input type="text" class="form-control" id="link" name="link" placeholder="Domínio" value="{{ $banner->link ?? ''  }}">
                                         </div>
                                     </div>
-                                    
                                 </div>
                             </div>
                             <!-- /.card-body -->

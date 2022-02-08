@@ -18,15 +18,7 @@
 
                 <div class="row">
                     <div class="col-4">
-                        <div class="form-group">
-                            <label for="logo">Imagem</label>
-                            <div class="input-group">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input2" id="galeria_imagem" name="galeria_imagem">
-                                    <label class="custom-file-label" for="galeria_imagem">Escolha a Imagem</label>
-                                </div>
-                            </div>
-                        </div>
+                        <x-adminlte-input-file name="galeria_imagem" label="Imagem" placeholder="Escolha a imagem" disable-feedback/>
                     </div>
                     <div class="col-8">
                         <div class="form-group">
@@ -35,13 +27,11 @@
                         </div>
                     </div> 
                 </div>
-                
                 <div class="row">
                     <div class="col-12">
                         <div class="galeria-imagens">
                             <div class="row">
                                 @foreach ($imagens as $imagem)
-
                                     <div class="col-3 box-img">
                                         <span>{{ $imagem->titulo }}</span>
                                         <div class="btns">

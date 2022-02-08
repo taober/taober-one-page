@@ -1,15 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Taober One Page')
-
-@section('css')
-    <link rel="stylesheet" href="/vendor/summernote/summernote-bs4.min.css">
-    <link rel="stylesheet" href="/css/taober.css">
-@stop
-
+@section('title', 'Imóveis')
 
 @section('content_header')
-    <h1>Que Fazemos</h1>
+    <h1>Sites</h1>
 @stop
 
 @section('content')
@@ -19,9 +13,9 @@
             <div class="col-12">
             <div class="card card-primary card-outline">
                 <div class="card-header">
-                    <h3 class="card-title">Listagem do Que Fazemos</h3>
+                    <h3 class="card-title">Listagem de Sites</h3>
                     <div class="card-tools">
-                        <a href="/admin/o-que-fazemos/novo/">
+                        <a href="/admin/portifolios/novo/">
                             <button type="button" class="btn btn-primary btn-sm">
                                 <i class="fas fa-plus"></i> Novo
                             </button>
@@ -33,8 +27,8 @@
                 <table id="data-table" class="table table-bordered table-hover">
                     <thead>
                         <tr>
-                            <th>Nome</th>
-                            <th>Descricao</th>
+                            <th>Titulo</th>
+                            <th>Dominio</th>
                             <th width='100'>Ativo</th>
                             <th></th>
                         </tr> 
@@ -43,7 +37,7 @@
                         @foreach ($itens as $item)
                             <tr>
                                 <td>{{ $item->titulo }}</td>
-                                <td>{{ $item->descricao }}</td>
+                                <td>{{ $item->dominio }}</td>
                                 <td>{{ $item->ativo == '0' ? 'Não' : 'Sim'  }}</td>
                                 <td>
                                     <div class="btn-group">
@@ -52,8 +46,8 @@
                                           <span class="sr-only">Toggle Dropdown</span>
                                         </button>
                                         <div class="dropdown-menu" role="menu">
-                                          <a class="dropdown-item" href="/admin/o-que-fazemos/{{ $item->id }}">Editar</a>
-                                          <a class="dropdown-item" href="/admin/o-que-fazemos/deletar/{{ $item->id }}">Exluir</a>
+                                          <a class="dropdown-item" href="/admin/sites/{{ $item->id }}">Editar</a>
+                                          <a class="dropdown-item" href="/admin/sites/deletar/{{ $item->id }}">Exluir</a>
                                         </div>
                                       </div>
                                 </td>
@@ -62,8 +56,8 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th>Nome</th>
-                            <th>Descricao</th>
+                            <th>Titulo</th>
+                            <th>Empresa</th>
                             <th>Ativo</th>
                             <th></th>
                         </tr>
