@@ -47,6 +47,7 @@ class AdmPortifoliosController extends Controller
         $imagens = DB::table('imagens')
         ->where('ref_id', $id)
         ->where('ref_nome', 'portifolios')
+        ->orderBy('favorita', 'DESC')
         ->get();
 
         return view('AdmPortifoliosEdita', [

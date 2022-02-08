@@ -36,13 +36,13 @@ return [
     'mailers' => [
         'smtp' => [
             'transport' => 'smtp',
-            'host' => env('MAIL_HOST', 'smtp.mailtrap.io'),
-            'port' => env('MAIL_PORT', 2525),
-            'encryption' => env('MAIL_ENCRYPTION', 'tls'),
-            'username' => env('26081eff056768'),
-            'password' => env('84c13a6d3843a7'),
+            'host' => env('MAIL_HOST', 'mail.taober.com.br'),
+            'port' => env('MAIL_PORT', 465),
+            'encryption' => env('MAIL_ENCRYPTION', 'ssl'),
+            'username' => env('nao-responder@taober.com.br'),
+            'password' => env('A4ct1v376.'),
             'timeout' => null,
-            'auth_mode' => null,
+            'auth_mode' => true,
         ],
 
         'ses' => [

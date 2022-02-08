@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Mail;
 use App\Mail\EnviaEmail;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Image;
 use Intervention\Image\Filters\FilterInterface;
 use Illuminate\Support\Facades\Log;
+use App\Models\Portifolios;
 
 class CarregaSiteController extends Controller
 {
@@ -20,8 +22,6 @@ class CarregaSiteController extends Controller
         $site = DB::table('sites')
             ->where('dominio', $url)
             ->first();
-
-            
 
         if (!$site) {
             die('<h1>Site Não Encontrado</h1>');
@@ -72,7 +72,6 @@ class CarregaSiteController extends Controller
 
     public function preview_site($id)
     {
-
         $site = DB::table('sites')
             ->where('id', $id)
             ->first();
@@ -85,19 +84,35 @@ class CarregaSiteController extends Controller
             ->where('id', $site->template_id)
             ->first();
 
-        $portifolios = DB::table('portifolios')
-            //->leftJoin('imagens', 'portifolios.id', '=', 'imagens.ref_id')
-            //->where('imagens.ref_nome', 'portifolios')
-            ->where('site_id', $site->id)
-            ->get();
 
+        // BANNER PRINCIPAL
         $banner_principal = DB::table('banners_principais')
             ->where('site_id', $site->id)
             ->first();
+        $banner_principal->imagens = DB::table('imagens')
+            ->where('ref_id', $banner_principal->id)
+            ->where('ref_nome', 'banner-principal')
+            ->orderBy('favorita','desc')
+            ->limit(1)
+            ->get();
+
+
+
+        // PORTIFOLIOS
+        $portifolios = Portifolios::where('site_id', $site->id)->get();
+        foreach ($portifolios as &$item) {
+            $item->imagens = $item->imagens()->orderBy('favorita', 'desc')->get();
+        }
+
 
         $quem_somos = DB::table('quem_somos')
             ->where('site_id', $site->id)
             ->first();
+        $quem_somos->imagens = DB::table('imagens')
+            ->where('ref_id', $quem_somos->id)
+            ->where('ref_nome', 'quem-somos')
+            ->limit(2)
+            ->get();
 
         $que_fazemos = DB::table('que_fazemos')
             ->where('site_id', $site->id)
@@ -119,15 +134,26 @@ class CarregaSiteController extends Controller
 
     public function contato_envia(Request $request)
     {
-        $to = 'procurarimoveisrj@gmail.com';
-        $url = $_SERVER['HTTP_HOST'];
+
+        $url = parse_url($_SERVER['HTTP_HOST'])['host'];
+
+        $site = DB::table('sites')
+            ->join('users', 'users.id', '=', 'sites.usuario_id')
+            ->where('dominio', $url)
+            ->first();
+
+        if (!$site) {
+            return redirect('/#contato')->with('status', 'Ocorreu um erro! Tente novamente mais tarde!');
+        }
+
+        $to = $site->email;
         $detalhes = [
-            'site' => $url,
+            'usuario' => $site->name,
             'nome' => $request->nome,
             'email' => $request->email,
-            'mensagem' => $request->mensagem,
-            'empreendimento' => $request->empreendimento,
-            'telefone' => $request->telefone
+            'assunto' => $request->assunto,
+            'telefone' => $request->telefone,
+            'mensagem' => $request->mensagem
         ];
         //dd($detalhes);
         Mail::to($to)->send(new EnviaEmail($detalhes));

@@ -27,8 +27,15 @@ class AdmBannerPrincipalController extends Controller
         ->where('site_id', $_SESSION['site_id'] )
         ->first();
 
+        $imagens = DB::table('imagens')
+            ->where('ref_id', $banner->id)
+            ->where('ref_nome', 'banner-principal')
+            ->orderBy('favorita', 'DESC')
+            ->get();
+
         return view('AdmBannerPrincipalEdita',[
-            'banner' => $banner
+            'banner' => $banner,
+            'imagens' => $imagens
         ]);
     }
 

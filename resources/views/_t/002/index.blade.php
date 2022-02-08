@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="/_t/002/css/animate.css">
     <link rel="stylesheet" href="/_t/002/css/aos.css">
     <link rel="stylesheet" href="/_t/002/css/slick.css">
+    <link rel="stylesheet" href="/_t/002/css/lightbox.min.css">
     <link rel="stylesheet" href="/_t/002/css/default.css">
     <link rel="stylesheet" href="/_t/002/css/style.css">
 </head>
@@ -93,7 +94,7 @@
                                         <a class="page-scroll" href="#project">Projetos</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="page-scroll" href="#team">Nosso Time</a>
+                                        {{-- <a class="page-scroll" href="#team">Nosso Time</a> --}}
                                     </li>
                                     <li class="nav-item">
                                         <a class="page-scroll" href="#contact">Contatos</a>
@@ -117,12 +118,14 @@
                             <h4 class="sub-title wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="1s">{{ $bannerPrincipal->titulo }}</h4>
                             <h1 class="banner-title mt-10 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="2s">{!! $bannerPrincipal->subtitulo !!}</h1>
                             <p>Mais um texto AQUI</p>
-                            <a class="banner-contact mt-25 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="2.3s" rel="nofollow" href="https://rebrand.ly/interior-ud">Entre em contato!</a>
+                            <a class="banner-contact mt-25 wow fadeInUp page-scroll" data-wow-duration="1.5s" data-wow-delay="2.3s" href="#contact">Entre em contato!</a>
                         </div> <!-- banner content -->
                     </div>
                 </div> <!-- row -->
             </div> <!-- container -->
-            <div class="banner-image bg_cover" style="background-image: url({{asset('/imagens/'.$bannerPrincipal->imagem)}})"></div>
+            @foreach ($bannerPrincipal->imagens as $imagem)
+                <div class="banner-image bg_cover" style="background-image: url({{asset('/imagens/'.$imagem->imagem)}})"></div>
+            @endforeach
         </div> <!-- header banner -->
 
     </header>
@@ -130,21 +133,21 @@
     <!--====== HEADER PART ENDS ======-->
 
     <!--====== ABOUT PART START ======-->
-
     <section id="about" class="about-area pt-80 pb-130">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
                     <div class="about-image mt-50 clearfix">
-                        <div class="single-image float-left">
-                            <img src="/_t/002/images/about/about-1.png" alt="About">
-                        </div> <!-- single image -->
-                        <div data-aos="fade-right" class="about-btn">
-                            <a class="main-btn" href="#"><span>25</span> Anos de Experiência</a>
-                        </div>
-                        <div class="single-image image-tow float-right">
-                            <img src="/_t/002/images/about/about-2.png" alt="About">
-                        </div> <!-- single image -->
+                        @foreach ($quemSomos->imagens as $imagem)
+                            @if( $loop->index > 0)
+                                {{-- <div data-aos="fade-right" class="about-btn">
+                                    <a class="main-btn" href="#"><span>25</span> Anos de Experiência</a>
+                                </div> --}}
+                            @endif
+                            <div class="single-image {{ ($loop->index > 0) ? 'image-tow float-right' : 'float-left' }}  ">
+                                <img src="{{asset('/imagens/' . $imagem->imagem) }}" alt="{{$imagem->titulo}}">
+                            </div> <!-- single image -->
+                        @endforeach                        
                     </div> <!-- about image -->
                 </div>
                 <div class="col-lg-6">
@@ -209,18 +212,24 @@
         </div>
         <div class="container-fluid">
             <div class="row project-active">
+                
                 @foreach ($portifolios as $item)
-                    <div class="col-lg-4">
+                    <div class="col-lg-4 div-project">
                         <div class="single-project">
                             <div class="project-image">
-                                {{-- <img src="/_t/002/images/project/p-1.jpg" alt="Project"> --}}
-                                <img src="{{asset('/imagens/portifolios/'.$item->imagem)}}" alt="Project">
+                                <img src="{{asset('/imagens/'.$item->imagens{0}['imagem'] )}}" alt="{{$item->imagens{0}['titulo']}}">
                             </div>
                             <div class="project-content">
-                                <a class="project-title" href="#">{{$item->titulo}}</a>
+                                <a class="project-title btn-portifolio" href="#">{{$item->titulo}}</a>
                             </div>
                         </div>
+                        <div class="galeria d-none">
+                            @foreach ($item->imagens as $imagem)
+                                <a class="example-image-link {{($loop->index>0)? 'd-none' : ''}}" href="{{asset('/imagens/'.$imagem->imagem)}}" data-lightbox="example-set" data-title="{{$imagem->titulo}}"><img class="example-image" src="{{asset('/imagens/'.$imagem->imagem)}}" alt=""/></a>
+                            @endforeach
+                        </div>
                     </div>
+                    
                 @endforeach
             </div>
         </div>
@@ -370,35 +379,36 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="contact-form">
-                        <form id="contact-form" action="/_t/002/contact.php" method="post" data-toggle="validator">
+                        <form id="contact-form" action="/contato-envia" method="post" data-toggle="validator">
+                            @csrf
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="single-form form-group">
-                                        <input type="text" name="name" placeholder="Seu nome" data-error="Name is required." required="required">
+                                        <input type="text" name="nome" placeholder="Seu nome" data-error="Nome é obrigatório." required="required">
                                         <div class="help-block with-errors"></div>
                                     </div> <!-- single form -->
                                 </div>
                                 <div class="col-md-6">
                                     <div class="single-form form-group">
-                                        <input type="email" name="email" placeholder="Seu emial" data-error="Valid email is required." required="required">
+                                        <input type="email" name="email" placeholder="Seu e-mail" data-error="Email válido é obrigatório." required="required">
                                         <div class="help-block with-errors"></div>
                                     </div> <!-- single form -->
                                 </div>
                                 <div class="col-md-6">
                                     <div class="single-form form-group">
-                                        <input type="text" name="subject" placeholder="Assunto" data-error="Subject is required." required="required">
+                                        <input type="text" name="assunto" placeholder="Assunto" data-error="Assunto é obrigatório." required="required">
                                         <div class="help-block with-errors"></div>
                                     </div> <!-- single form -->
                                 </div>
                                 <div class="col-md-6">
                                     <div class="single-form form-group">
-                                        <input type="text" name="phone" placeholder="Telefone" data-error="Phone is required." required="required">
+                                        <input type="text" name="telefone" placeholder="Telefone" data-error="Telefone é obrigatório'." required="required">
                                         <div class="help-block with-errors"></div>
                                     </div> <!-- single form -->
                                 </div>
                                 <div class="col-md-12">
                                     <div class="single-form form-group">
-                                        <textarea placeholder="Sua nensagem" name="message" data-error="Please,leave us a message." required="required"></textarea>
+                                        <textarea placeholder="Sua nensagem" name="mensagem" data-error="Por favor, deixe sua mensagem." required="required"></textarea>
                                         <div class="help-block with-errors"></div>
                                     </div> <!-- single form -->
                                 </div>
@@ -439,7 +449,7 @@
         <div class="footer-widget pt-80 pb-130">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-3 col-md-4 col-sm-8">
+                    <div class="col-lg-4 col-md-4 col-sm-8">
                         <div class="footer-logo mt-50">
                             <a href="#">
                                 <img src="{{asset('/imagens/'.$site->logo)}}" alt="Logo">
@@ -480,36 +490,38 @@
                             </ul>
                             <ul class="footer-social mt-20">
                                 @if($site->social_facebook != '')
-                                    <li><a href="#" title="Facebook"><i class="lni-facebook-filled"></i></a></li>
+                                    <li><a href="{{$site->social_facebook}}" title="Facebook"><i class="lni-facebook-filled"></i></a></li>
                                 @endif
                                 @if($site->social_twitter != '')
-                                    <li><a href="#" title="Twitter"><i class="lni-twitter-original"></i></a></li>
+                                    <li><a href="{{$site->social_twitter}}" title="Twitter"><i class="lni-twitter-original"></i></a></li>
                                 @endif
                                 @if($site->social_linkedin != '')
-                                    <li><a href="#" title="Linkedin"><i class="lni-linkedin"></i></a></li>
+                                    <li><a href="{{$site->social_linkedin}}" title="Linkedin"><i class="lni-linkedin"></i></a></li>
                                 @endif
                                 @if($site->social_google != '')
-                                    <li><a href="#" title="Google"><i class="lni-google"></i></a></li>
+                                    <li><a href="{{$site->social_google}}" title="Google"><i class="lni-google"></i></a></li>
                                 @endif
                                 @if($site->social_instagram != '')
-                                    <li><a href="#" title="Instagram"><i class="lni-instagram"></i></a></li>
+                                    <li><a href="{{$site->social_instagram}}" title="Instagram"><i class="lni-instagram"></i></a></li>
                                 @endif
                             </ul>
                         </div> <!-- footer logo -->
                     </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="col-lg-4 col-md-4 col-sm-6">
                         <div class="footer-link mt-45">
                             <div class="f-title">
-                                <h4 class="title">Essential Links</h4>
+                                <h4 class="title">Menu</h4>
                             </div>
                             <ul class="mt-15">
-                                <li><a href="#">About</a></li>
-                                <li><a href="#">Projects</a></li>
-                                <li><a href="#">Support</a></li>
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">Quem Somos</a></li>
+                                <li><a href="#">O que Fazemos</a></li>
+                                <li><a href="#">Projetos</a></li>
+                                <li><a href="#">Contatos</a></li>
                             </ul>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6">
+                    {{-- <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="footer-link mt-45">
                             <div class="f-title">
                                 <h4 class="title">Services</h4>
@@ -520,7 +532,7 @@
                                 <li><a href="#">Office Management</a></li>
                             </ul>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="col-lg-3 col-md-5 col-sm-8">
                         <div class="footer-newsleter mt-45">
                             <div class="f-title">
@@ -603,6 +615,9 @@
 
     <!--====== Aos js ======-->
     <script src="/_t/002/js/aos.js"></script>
+
+    <!--====== lightbox js ======-->
+    <script src="/_t/002/js/lightbox.min.js"></script>
 
 
     <!--====== Main js ======-->

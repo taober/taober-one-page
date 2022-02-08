@@ -14,12 +14,13 @@
 @section('content')
 
     <section class="content">
-        <form action="/admin/banner-principal/salvar" method="post" enctype="multipart/form-data"> 
-            <input type="hidden" name="id" value="{{ $banner->id ?? '' }}">
-            @csrf  
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12">
+       
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <form action="/admin/banner-principal/salvar" method="post" enctype="multipart/form-data"> 
+                        <input type="hidden" name="id" value="{{ $banner->id ?? '' }}">
+                        @csrf  
                         <div class="card card-primary card-outline">
                             <div class="card-header">
                                 <h3 class="card-title">Edite os dados principais do seu site</h3>
@@ -44,23 +45,6 @@
                                     </div>
                                 @endif                   
                                 <div class="row">
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label for="logo">Banner</label>
-                                            @if(!empty($banner->imagem))
-                                                <div class="adm-img box-img">
-                                                    <img src="/imagens/{{ $banner->imagem }}" alt="" width="auto" height="100%">
-                                                </div>
-                                            @endif
-                                            <div class="input-group">
-                                                <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" id="imagem" name="imagem">
-                                                    <label class="custom-file-label" for="logo">Escolha a Imagem</label>
-                                                </div>
-                                            </div>
-                                            <input type="checkbox" name="remover_banner" value="S"> Remover Imagem
-                                        </div>
-                                    </div>
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Titulo</label>
@@ -94,9 +78,14 @@
                             </div>
                             <!-- /.card-body -->
                         </div>
-                    </div>
+                    </form>
                 </div>
+                @if(isset($banner->id))
+                    <!-- /resources/views/components/adm-galeria-imagens.blade.php -->
+                    <x-adm-galeria-imagens titulo="Galeria de Imagens" :xrefid="$banner->id" xrefnome="banner-principal" :imagens="$imagens"/>
+                @endif 
             </div>
-        </form>
+        </div>
+    
     </section>
 @stop

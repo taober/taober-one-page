@@ -29,8 +29,8 @@ class EnviaEmail extends Mailable
      */
     public function build()
     {
-        $assunto = "multisites // " . $this->detalhes['empreendimento'] . " // de " . $this->detalhes['nome'];
-        return $this->from('to@email.com')
+        $assunto = "Nova mensagem recebida pelo site :-)";
+        return $this->from($this->detalhes['email'])
         ->subject($assunto)
         ->view('emails.contato')
         ->with([

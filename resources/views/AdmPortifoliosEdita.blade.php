@@ -110,67 +110,8 @@
                     </form>
                 </div>
                 @if(isset($item->id))
-                <div class="col-12">
-                    <form action="/admin/portifolios/imagem-salvar" method="post" enctype="multipart/form-data"> 
-                        <input type="hidden" name="portifolio_id" value="{{ $item->id ?? '' }}">
-                        @csrf  
-                        
-                        <div class="card card-primary card-outline">
-                            <div class="card-header">
-                                <h3 class="card-title">Edite as Imagens do Portifólio</h3>
-                                <div class="card-tools">
-                                    <button type="submit" class="btn btn-primary ">
-                                        <i class="fas fa-save"></i> Salvar
-                                    </button>    
-                                </div>
-                            </div>
-                            <!-- /.card-header -->
-                            <div class="card-body"> 
-            
-                                <div class="row">
-                                    <div class="col-4">
-                                        <div class="form-group">
-                                            <label for="logo">Imagem</label>
-                                            <div class="input-group">
-                                                <div class="custom-file">
-                                                    <input type="file" class="custom-file-input2" id="portifolio_imagem" name="portifolio_imagem">
-                                                    <label class="custom-file-label" for="portifolio_imagem">Escolha a Imagem</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-8">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Titulo</label>
-                                            <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Título da imagem" value="">
-                                        </div>
-                                    </div> 
-                                </div>
-                                
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="galeria-imagens">
-                                            <div class="row">
-                                                @foreach ($imagens as $imagem)
-
-                                                    <div class="col-3 box-img">
-                                                        <a class=" btn btn-danger btn-sm" href="/admin/portifolios/imagem-deletar/{{ $imagem->id }}" style="position: absolute;right: 8px;padding: 0px 5px; top: 8px;">
-                                                            <i class="fas fa-trash" style="font-size: 10px;"></i>
-                                                        </a>
-                                                        <img src="{{asset('/imagens/portifolios/'.$imagem->imagem)}}" alt="" width="100%" height="auto">
-                                                        {{ $imagem->titulo }}
-                                                    </div>
-
-                                                @endforeach
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /.card-body -->
-                        </div>
-                    </form>
-                </div>
+                    <!-- /resources/views/components/adm-galeria-imagens.blade.php -->
+                    <x-adm-galeria-imagens titulo="Edite as Imagens do Portifólio" :xrefid="$item->id" xrefnome="portifolios" :imagens="$imagens"/>
                 @endif 
             </div>
         </div>

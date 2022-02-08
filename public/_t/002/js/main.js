@@ -132,6 +132,10 @@ $(function() {
     });
     
     //Animate the scroll to yop
+    $('.btn-portifolio').on('click', function(event) {
+        event.preventDefault();
+        $(this).closest('.div-project').find('.galeria a:first-child').trigger('click');
+    });
     $('.back-to-top').on('click', function(event) {
         event.preventDefault();
         

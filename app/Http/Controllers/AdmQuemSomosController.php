@@ -27,15 +27,20 @@ class AdmQuemSomosController extends Controller
         ->where('site_id', $_SESSION['site_id'] )
         ->first();
 
+        $imagens = DB::table('imagens')
+            ->where('ref_id', $quemSomos->id)
+            ->where('ref_nome', 'quem-somos')
+            ->get();
+
         return view('AdmQuemSomosEdita',[
-            'quemSomos' => $quemSomos
+            'quemSomos' => $quemSomos,
+            'imagens' => $imagens
         ]);
     }
 
     public function salvar(Request $request){
         
         $id = $request->site_id;
-
 
         $dados = [
             'ativo' => $request->ativo,
@@ -51,17 +56,6 @@ class AdmQuemSomosController extends Controller
             $quemSomos_id = $request->id;
         }
 
-        if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
-            $extension = $request->imagem->extension();
-            $imagem_banner = "{$quemSomos_id}_quem_somos.webp";
-            $resizeImage = Image::make($request->file('imagem')->getRealPath())->encode('webp', 100);
-            $resizeImage->save(storage_path('app/imagens/' . $imagem_banner));
-            $dados['imagem'] = $imagem_banner;
-        }
-
-        if ($request->remover_banner == 'S'){
-            $dados['imagem'] = "";
-        }
 
         DB::table('quem_somos')
         ->where('id', $quemSomos_id)

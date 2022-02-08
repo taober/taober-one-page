@@ -30,6 +30,11 @@ Auth::routes();
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/admin', [App\Http\Controllers\DashboardController::class, 'index'])->name('index');
 
+
+
+    Route::post('/admin/media/imagem-salvar', [App\Http\Controllers\AdmMediaController::class, 'imagem_salvar'])->name('media-imagem-salvar');
+    Route::get('/admin/media/imagem-favoritar/{id}', [App\Http\Controllers\AdmMediaController::class, 'imagem_favoritar'])->name('media-imagem-favoritar');
+
     Route::get('/admin/taober/backup_database', [App\Http\Controllers\AdmTaoberController::class, 'backup_database'])->name('index');
 
 
