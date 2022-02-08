@@ -13,6 +13,6 @@ class Portifolios extends Model
     public function imagens()
     {
         return $this->hasMany(Imagens::class, 'ref_id', 'id')
-        ->where('ref_nome','portifolios');
+        ->where('ref_nome','portifolios'); 
     }
 }
