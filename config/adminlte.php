@@ -239,7 +239,7 @@ return [
         // Sidebar items:
         ['header' => 'ADMIN'],
         [
-            'text'        => 'Meu Site',
+            'text'        => 'Meu site',
             'url'         => 'admin/site',
             'icon'        => 'fas fa-fw fa-globe',
             'label_color' => 'success',
