@@ -45,6 +45,14 @@ Route::get('/admin', [App\Http\Controllers\DashboardController::class, 'index'])
     Route::get('/admin/site/', [App\Http\Controllers\AdmSiteController::class, 'index'])->name('index');
     Route::post('/admin/site/salvar', [App\Http\Controllers\AdmSiteController::class, 'salvar'])->name('salvar');
 
+    Route::get('/admin/nodes/{tipo}', [App\Http\Controllers\AdmNodesController::class, 'index'])->name('index');
+    Route::get('/admin/nodes/novo', [App\Http\Controllers\AdmNodesController::class, 'novo'])->name('novo');
+    Route::get('/admin/nodes/{id}', [App\Http\Controllers\AdmNodesController::class, 'edita'])->name('edita');
+    Route::get('/admin/nodes/deletar/{id}', [App\Http\Controllers\AdmNodesController::class, 'deletar'])->name('deletar');
+    Route::post('/admin/nodes/salvar', [App\Http\Controllers\AdmNodesController::class, 'salvar'])->name('salvar');
+    Route::post('/admin/nodes/imagem-salvar', [App\Http\Controllers\AdmNodesController::class, 'imagem_salvar'])->name('salvar');
+    Route::get('/admin/nodes/imagem-deletar/{id}', [App\Http\Controllers\AdmNodesController::class, 'imagem_deletar'])->name('salvar');
+
     Route::get('/admin/banner-principal/', [App\Http\Controllers\AdmBannerPrincipalController::class, 'index'])->name('index');
     Route::post('/admin/banner-principal/salvar', [App\Http\Controllers\AdmBannerPrincipalController::class, 'salvar'])->name('salvar');
 

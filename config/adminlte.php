@@ -268,18 +268,19 @@ return [
             'icon'        => 'fas fa-fw fa-comment-alt',
             'label_color' => 'success',
         ],
-        // [
-        //     'text'        => 'Pages',
-        //     'url'         => 'admin/pages',
-        //     'icon'        => 'fas fa-fw fa-file-code',
-        //     'label_color' => 'success',
-        // ],
         [
             'text'        => 'Portifólios',
             'url'         => 'admin/portifolios',
             'icon'        => 'fas fa-fw fa-network-wired',
             'label_color' => 'success',
         ],
+        [
+            'text'        => 'Nodes Quem Somos',
+            'url'         => 'admin/nodes/quem-somos',
+            'icon'        => 'fas fa-fw fa-file-code',
+            'label_color' => 'success',
+        ],
+
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
