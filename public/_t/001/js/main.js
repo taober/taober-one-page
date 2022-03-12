@@ -1,4 +1,4 @@
-(function($){
+$(function() {
     
     "use strict";
     
@@ -29,18 +29,18 @@
     
     //===== Sticky
     
-    $(window).on('scroll', function(event) {    
+    $(window).on('scroll',function(event) {    
         var scroll = $(window).scrollTop();
         if (scroll < 10) {
-            $(".navigation").removeClass("sticky");
-        } else{
-            $(".navigation").addClass("sticky");
+            $(".navigation-bar").removeClass("sticky");
+        }else{
+            $(".navigation-bar").addClass("sticky");
         }
     });
     
     
     //===== Section Menu Active
-
+    
     var scrollLink = $('.page-scroll');
         // Active link switching
         $(window).scroll(function() {
@@ -48,7 +48,7 @@
 
         scrollLink.each(function() {
 
-          var sectionOffset = $(this.hash).offset().top - 73;
+          var sectionOffset = $(this.hash).offset().top - 90;
 
           if ( sectionOffset <= scrollbarLocation ) {
             $(this).parent().addClass('active');
@@ -58,44 +58,65 @@
     });
     
     
+    //===== wow
     
-    // Parallaxmouse js
-    
-    function parallaxMouse() {
-        if ($('#parallax').length) {
-            var scene = document.getElementById('parallax');
-            var parallax = new Parallax(scene);
-        };
-    };
-    parallaxMouse();
+    new WOW().init();
     
     
-    //===== Progress Bar
+    //===== AOS
     
-    if($('.progress-line').length){
-        $('.progress-line').appear(function(){
-            var el = $(this);
-            var percent = el.data('width');
-            $(el).css('width',percent+'%');
-        },{accY: 0});
-    }
+     AOS.init({
+         duration: 800,
+     });
     
     
-    //===== Counter Up
+    //===== Slick project
     
-    $('.counter').counterUp({
-        delay: 10,
-        time: 1600,
+    $('.project-active').slick({
+        dots: true,
+        infinite: true,
+        speed: 800,
+        slidesToShow: 5,
+        slidesToScroll: 3,
+        arrows: false,
+        responsive: [
+            {
+              breakpoint: 1200,
+              settings: {
+                slidesToShow: 4,
+              }
+            },
+            {
+              breakpoint: 992,
+              settings: {
+                slidesToShow: 3,
+              }
+            },
+            {
+              breakpoint: 768,
+              settings: {
+                slidesToShow: 2,
+              }
+            },
+            {
+              breakpoint: 576,
+              settings: {
+                slidesToShow: 1,
+              }
+            }
+        ]
     });
     
     
-    //===== Magnific Popup
+    //===== Slick Testimonial
     
-    $('.image-popup').magnificPopup({
-      type: 'image',
-      gallery:{
-        enabled:true
-      }
+    $('.testimonial-active').slick({
+        dots: true,
+        infinite: true,
+        speed: 800,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
     });
     
     
@@ -110,8 +131,11 @@
         }
     });
     
-    
     //Animate the scroll to yop
+    $('.btn-portifolio').on('click', function(event) {
+        event.preventDefault();
+        $(this).closest('.div-project').find('.galeria a:first-child').trigger('click');
+    });
     $('.back-to-top').on('click', function(event) {
         event.preventDefault();
         
@@ -120,9 +144,6 @@
         }, 1500);
     });
     
-
-    
-    //===== 
     
     
     
@@ -130,9 +151,4 @@
     
     
     
-    
-    
-    
-    
-    
-}(jQuery));
+});

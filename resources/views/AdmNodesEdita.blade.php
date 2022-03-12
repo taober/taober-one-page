@@ -8,7 +8,7 @@
 @stop
 
 @section('content_header')
-    <h1> Node</h1>
+    <h1> {{ $tipo->tipo_titulo }}</h1>
 @stop
 
 @section('content')
@@ -18,15 +18,20 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <form action="/admin/node/salvar" method="post" enctype="multipart/form-data"> 
-                        <input type="hidden" name="id" value="{{ $item->id ?? '' }}">
+                    <form action="/admin/nodes/salvar" method="post" enctype="multipart/form-data"> 
+                        <input type="hidden" name="tipo" value="{{ $tipo->tipo_id }}">
+                        <input type="hidden" name="id" value="{{ $item->node_id ?? '' }}">
                         @csrf  
                         <div class="card card-primary card-outline">
                             <div class="card-header">
-                                <h3 class="card-title">Edite um Node</h3>
+                                @if(isset($item->node_id))
+                                    <h3 class="card-title">Editar</h3>
+                                    @else
+                                    <h3 class="card-title">Novo</h3>
+                                @endif
                                 <div class="card-tools">
-                                    @if(isset($item->id))
-                                        <a href="/admin/site/preview/{{ $item->id}}" target="_blank">
+                                    @if(isset($item->node_id))
+                                        <a href="/admin/site/preview/{{ $item->node_id}}" target="_blank">
                                         <button type="button" class="btn btn-default ">
                                             <i class="fas fa-eye"></i> Preview
                                         </button>
@@ -75,7 +80,7 @@
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Descrição</label>
-                                            <textarea class="form-control" id="descricao" name="descricao">{{ $item->node_descricao ?? ''  }}</textarea>
+                                            <textarea class="form-control" id="conteudo" name="conteudo">{{ $item->node_conteudo ?? ''  }}</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -84,9 +89,9 @@
                         </div>
                     </form>
                 </div>
-                @if(isset($item->id))
+                @if(isset($item->node_id))
                     <!-- /resources/views/components/adm-galeria-imagens.blade.php -->
-                    <x-adm-galeria-imagens titulo="Edite as Imagens do Portifólio" :xrefid="$item->id" xrefnome="portifolios" :imagens="$imagens"/>
+                    <x-adm-galeria-imagens titulo="Galeria de Imagens" :xrefid="$item->node_id" xrefnome="nodes" :imagens="$imagens"/>
                 @endif 
             </div>
         </div>

@@ -17,9 +17,9 @@ class Nodes extends Model
         return $this->hasMany(NodesTipo::class, 'node_tipo', 'tipo_id');
     }
 
-    // public function imagens()
-    // {
-    //     return $this->hasMany(Imagens::class, 'ref_id', 'id')
-    //         ->where('ref_nome', 'portifolios');
-    // }
+    public function imagens()
+    {
+        return $this->hasMany(Imagens::class, 'ref_id', 'node_id')
+            ->where('ref_nome', 'nodes');
+    }
 }

@@ -12,6 +12,7 @@ use Intervention\Image\Image;
 use Intervention\Image\Filters\FilterInterface;
 use Illuminate\Support\Facades\Log;
 use App\Models\Portifolios;
+use App\Models\Nodes;
 
 class CarregaSiteController extends Controller
 {
@@ -38,48 +39,31 @@ class CarregaSiteController extends Controller
             ->first();
 
 
-        // BANNER PRINCIPAL
-        $banner_principal = DB::table('banners_principais')
-        ->where('site_id', $site->id)
-            ->first();
-        $banner_principal->imagens = DB::table('imagens')
-        ->where('ref_id', $banner_principal->id)
-            ->where('ref_nome', 'banner-principal')
-            ->orderBy('favorita', 'desc')
-            ->limit(1)
-            ->get();
+        if ($area_principal = Nodes::where('site_id', $site->id)->where('tipo_id', '1')->first()) {
+            $area_principal->imagens = $area_principal->imagens()->orderBy('favorita', 'desc')->get();
+        }
 
+        if ($quem_somos = Nodes::where('site_id', $site->id)->where('tipo_id', '4')->first()) {
+            $quem_somos->imagens = $quem_somos->imagens()->orderBy('favorita', 'desc')->get();
+        }
 
+        $que_fazemos = Nodes::where('site_id', $site->id)->where('tipo_id', '3')->get();
 
-        // PORTIFOLIOS
-        $portifolios = Portifolios::where('site_id', $site->id)->get();
+        $portifolios = Nodes::where('site_id', $site->id)->where('tipo_id', '2')->get();
         foreach ($portifolios as &$item) {
             $item->imagens = $item->imagens()->orderBy('favorita', 'desc')->get();
         }
 
-
-        $quem_somos = DB::table('quem_somos')
-            ->where('site_id', $site->id)
-            ->first();
-        $quem_somos->imagens = DB::table('imagens')
-            ->where('ref_id', $quem_somos->id)
-            ->where('ref_nome', 'quem-somos')
-            ->limit(2)
-            ->get();
-
-        $que_fazemos = DB::table('que_fazemos')
-            ->where('site_id', $site->id)
-            ->get();
-
-        $depoimentos = DB::table('depoimentos')
-            ->where('site_id', $site->id)
-            ->get();
+        $depoimentos = Nodes::where('site_id', $site->id)->where('tipo_id', '5')->get();
+        foreach ($depoimentos as &$item) {
+            $item->imagens = $item->imagens()->orderBy('favorita', 'desc')->get();
+        }
 
         return view('_t/' . $template->dir . '/index', [
             'site' => $site,
             'portifolios' => $portifolios,
             'quemSomos' => $quem_somos,
-            'bannerPrincipal' => $banner_principal,
+            'areaPrincipal' => $area_principal,
             'queFazemos' => $que_fazemos,
             'depoimentos' => $depoimentos
         ]);
@@ -102,47 +86,67 @@ class CarregaSiteController extends Controller
 
 
         // BANNER PRINCIPAL
-        $banner_principal = DB::table('banners_principais')
-            ->where('site_id', $site->id)
-            ->first();
-        $banner_principal->imagens = DB::table('imagens')
-            ->where('ref_id', $banner_principal->id)
-            ->where('ref_nome', 'banner-principal')
-            ->orderBy('favorita','desc')
-            ->limit(1)
-            ->get();
+        // $banner_principal = DB::table('banners_principais')
+        //     ->where('site_id', $site->id)
+        //     ->first();
+        // $banner_principal->imagens = DB::table('imagens')
+        //     ->where('ref_id', $banner_principal->id)
+        //     ->where('ref_nome', 'banner-principal')
+        //     ->orderBy('favorita','desc')
+        //     ->limit(1)
+        //     ->get();
 
+        // $quem_somos = DB::table('quem_somos')
+        //     ->where('site_id', $site->id)
+        //     ->first();
+        // $quem_somos->imagens = DB::table('imagens')
+        //     ->where('ref_id', $quem_somos->id)
+        //     ->where('ref_nome', 'quem-somos')
+        //     ->limit(2)
+        //     ->get();
 
+        // $que_fazemos = DB::table('que_fazemos')
+        // ->where('site_id', $site->id)
+        //     ->get();
 
-        // PORTIFOLIOS
-        $portifolios = Portifolios::where('site_id', $site->id)->get();
+        // // PORTIFOLIOS
+        // $portifolios = Portifolios::where('site_id', $site->id)->get();
+        // foreach ($portifolios as &$item) {
+        //     $item->imagens = $item->imagens()->orderBy('favorita', 'desc')->get();
+        // }
+
+        // $depoimentos = DB::table('depoimentos')
+        // ->where('site_id', $site->id)
+        // ->get();
+
+        if($area_principal = Nodes::where('site_id', $site->id)->where('tipo_id', '1')->first()){
+            $area_principal->imagens = $area_principal->imagens()->orderBy('favorita', 'desc')->get();
+        }
+
+        if($quem_somos = Nodes::where('site_id', $site->id)->where('tipo_id', '4')->first()){
+            $quem_somos->imagens = $quem_somos->imagens()->orderBy('favorita', 'desc')->get();
+        }
+
+        $que_fazemos = Nodes::where('site_id', $site->id)->where('tipo_id', '3')->get();
+
+        $portifolios = Nodes::where('site_id', $site->id)->where('tipo_id', '2')->get();
         foreach ($portifolios as &$item) {
             $item->imagens = $item->imagens()->orderBy('favorita', 'desc')->get();
         }
 
+        $depoimentos = Nodes::where('site_id', $site->id)->where('tipo_id', '5')->get();
+        foreach ($depoimentos as &$item) {
+            $item->imagens = $item->imagens()->orderBy('favorita', 'desc')->get();
+        }
 
-        $quem_somos = DB::table('quem_somos')
-            ->where('site_id', $site->id)
-            ->first();
-        $quem_somos->imagens = DB::table('imagens')
-            ->where('ref_id', $quem_somos->id)
-            ->where('ref_nome', 'quem-somos')
-            ->limit(2)
-            ->get();
 
-        $que_fazemos = DB::table('que_fazemos')
-            ->where('site_id', $site->id)
-            ->get();
-
-        $depoimentos = DB::table('depoimentos')
-            ->where('site_id', $site->id)
-            ->get();
+        
 
         return view('_t/' . $template->dir . '/index', [
             'site' => $site,
             'portifolios' => $portifolios,
             'quemSomos' => $quem_somos,
-            'bannerPrincipal' => $banner_principal,
+            'areaPrincipal' => $area_principal,
             'queFazemos' => $que_fazemos,
             'depoimentos' => $depoimentos
         ]);

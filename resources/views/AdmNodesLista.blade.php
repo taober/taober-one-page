@@ -8,7 +8,7 @@
 @stop
 
 @section('content_header')
-    <h1>Nodes</h1>
+    <h1>{{ $tipo->tipo_titulo }}</h1>
 @stop
 
 @section('content')
@@ -18,9 +18,9 @@
             <div class="col-12">
             <div class="card card-primary card-outline">
                 <div class="card-header">
-                    <h3 class="card-title">Listagem de Nodes</h3>
+                    <h3 class="card-title">Listagem</h3>
                     <div class="card-tools">
-                        <a href="/admin/nodes/novo/">
+                        <a href="/admin/nodes/novo/{{ $tipo->tipo_nome }}">
                             <button type="button" class="btn btn-primary btn-sm">
                                 <i class="fas fa-plus"></i> Novo
                             </button>
@@ -43,7 +43,7 @@
                             <tr>
                                 <td>{{ $item->node_titulo }}</td>
                                 <td>{{ $item->node_subtitulo }}</td>
-                                <td>{{ $item->ativo == '0' ? 'Não' : 'Sim'  }}</td>
+                                <td>{{ $item->node_ativo == '0' ? 'Não' : 'Sim'  }}</td>
                                 <td>
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-info">Ações</button>
@@ -51,8 +51,8 @@
                                           <span class="sr-only">Toggle Dropdown</span>
                                         </button>
                                         <div class="dropdown-menu" role="menu">
-                                          <a class="dropdown-item" href="/admin/nodes/{{ $item->id }}">Editar</a>
-                                          <a class="dropdown-item" href="/admin/nodes/deletar/{{ $item->id }}">Exluir</a>
+                                          <a class="dropdown-item" href="/admin/nodes/{{ $item->node_id }}">Editar</a>
+                                          <a class="dropdown-item" href="/admin/nodes/deletar/{{ $item->node_id }}">Exluir</a>
                                         </div>
                                       </div>
                                 </td>

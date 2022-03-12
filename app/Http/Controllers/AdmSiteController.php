@@ -23,9 +23,7 @@ class AdmSiteController extends Controller
 
     public function index()
     {
-        $site = DB::table('sites')
-        ->where('id', $_SESSION['site_id'] )
-        ->first();
+        $site = auth()->user()->site()->first();
         return view('AdmSiteEdita',[
             'site' => $site
         ]);
@@ -42,9 +40,9 @@ class AdmSiteController extends Controller
             'google_analytcs' => $request->google_analytcs,
             'google_search' => $request->google_search,
             'google_maps' => $request->google_maps,
-            'facebook' => $request->facebook,
-            'instagram' => $request->instagram,
-            'linkedin' => $request->linkedin,
+            'social_facebook' => $request->facebook,
+            'social_instagram' => $request->instagram,
+            'social_linkedin' => $request->linkedin,
             'email' => $request->email,
             'whatsapp' => $request->whatsapp,
         ];

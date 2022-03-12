@@ -19,27 +19,58 @@ class AdmNodesController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index($tipo)
     {
+
+        $site_id = auth()->user()->site()->first()->id;
+        //dd($site->id);
+        $tipo = DB::table('nodes_tipos')
+            ->where('tipo_nome', $tipo)
+            ->first();
+    
         $nodes = DB::table('nodes')
-        ->where('site_id', $_SESSION['site_id'] )
-        ->get();
+            ->where('site_id', $site_id )
+            ->where('tipo_id', $tipo->tipo_id)
+            ->get();
+
+        if($tipo->tipo_lista == 0){
+            if($nodes->count() == 0){
+                return redirect('admin/nodes/novo/' . $tipo->tipo_nome);
+            }else{
+                return redirect('admin/nodes/' . $nodes{0}->node_id);
+            }
+        }
 
         return view('AdmNodesLista', [
+            'tipo' => $tipo,
             'itens' => $nodes
         ]);
     }
 
-    public function novo()
+    public function novo($tipo)
     {
-        return view('AdmNodesEdita');
+
+        $tipo = DB::table('nodes_tipos')
+        ->where('tipo_nome', $tipo)
+            ->first();
+
+        return view('AdmNodesEdita', [
+            'tipo' => $tipo
+        ]);
     }
 
     public function edita($id)
     {
+
+        $site_id = auth()->user()->site()->first()->id;
+        //dd($site_id);
         $node = DB::table('nodes')
-        ->where('id', $id)
-        ->where('site_id', $_SESSION['site_id'])
+        ->where('node_id', $id)
+        ->where('site_id', $site_id)
+        ->first();
+
+        $tipo = DB::table('nodes_tipos')
+        ->where('tipo_id', $node->tipo_id)
         ->first();
 
         $imagens = DB::table('imagens')
@@ -49,6 +80,7 @@ class AdmNodesController extends Controller
         ->get();
 
         return view('AdmNodesEdita', [
+            'tipo' => $tipo,
             'item' => $node,
             'imagens' => $imagens
         ]);
@@ -57,104 +89,51 @@ class AdmNodesController extends Controller
     public function salvar(Request $request){
         
         $id = $request->id;
+        $site_id = auth()->user()->site()->first()->id;
 
 
         $dados = [
-            'ativo' => $request->ativo,
-            'titulo' => $request->titulo,
-            'empresa' => $request->empresa,
-            'descricao' => $request->descricao,
-            'link' => $request->link
+            'node_ativo' => $request->ativo,
+            'node_titulo' => $request->titulo,
+            'node_subtitulo' => $request->subtitulo,
+            'node_conteudo' => $request->conteudo,
+            'node_link' => $request->link
         ];
 
+        $node_id = $request->id;
+
         if(!$request->id){
-            $portifolio_id = DB::table('portifolios')->insertGetId([
-                'site_id' => $_SESSION['site_id']
-            ]);
+            $dados['tipo_id'] = $request->tipo;
+            $dados['site_id'] = $site_id;
+            $node_id = DB::table('nodes')->insertGetId($dados);
         }else{
-            $portifolio_id = $request->id;
+            DB::table('nodes')
+            ->where('node_id', $node_id)
+            ->where('site_id', $site_id)
+            ->update($dados);
         }
 
-        if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
-            $imagem_nome = "{$id}_capa.webp";
-            $resizeImage = Image::make($request->file('imagem')->getRealPath())->encode('webp', 100);
-            $resizeImage->save(storage_path('app/imagens/portifolios/' . $imagem_nome));
-            $dados['imagem'] = $imagem_nome;
-        }
-
-        if ($request->remover_foto == 'S') {
-            $dados['imagem'] = "";
-        }
-
-
-        DB::table('portifolios')
-        ->where('id', $portifolio_id)
-        ->where('site_id', $_SESSION['site_id'])
-        ->update($dados);
-
-        return redirect('admin/portifolios/' . $portifolio_id)->with('mensagem_sucesso', 'Depoimento Atualizado com Sucesso!');
+        return redirect('admin/nodes/' . $node_id)->with('mensagem_sucesso', 'Node Atualizado com Sucesso!');
         die();
 
     }
 
     public function deletar($id)
     {
+
+        $site_id = auth()->user()->site()->first()->id;
         DB::table('portifolios')
         ->where('id', $id)
-        ->where('site_id', $_SESSION['site_id'])
+        ->where('site_id', $site_id)
         ->delete();
 
         return redirect('admin/portifolios/')->with('mensagem_sucesso', 'Depoimento Excluido com Sucesso!');
         die();
     }
 
-    public function imagem_salvar(Request $request)
-    {
+    
 
-        $portifolio_id = $request->portifolio_id;
-
-        $dados = [
-            'ref_nome' => 'portifolios',
-            'ref_id' => $portifolio_id,
-            'titulo' => $request->titulo
-        ];
-
-        $imagem_id = DB::table('imagens')->insertGetId($dados);
-
-        if ($request->hasFile('portifolio_imagem') && $request->file('portifolio_imagem')->isValid()) {
-            $imagem_nome = "{$imagem_id}_img.webp";
-            $resizeImage = Image::make($request->file('portifolio_imagem')->getRealPath())->encode('webp', 100);
-            $resizeImage->save(storage_path('app/imagens/portifolios/' . $imagem_nome));
-            $dados['imagem'] = $imagem_nome;
-        }
-
-
-        DB::table('imagens')
-            ->where('id', $imagem_id)
-            ->update($dados);
-
-        return redirect('admin/portifolios/' . $portifolio_id)->with('mensagem_sucesso', 'Imagem Incluida com Sucesso!');
-        die();
-    }
-
-    public function imagem_deletar($id)
-    {
-
-        $file = DB::table('imagens')
-            ->where('id', $id)
-            ->first();
-
-        $name = $file->imagem;
-        $portifolio_id = $file->ref_id;
-
-        $res = DB::table('imagens')->where('id', $id)->delete();
-
-        File::delete(storage_path('app/imagens/portifolios/' . $name));
-                
-
-        return redirect('admin/portifolios/'. $portifolio_id)->with('mensagem_sucesso', 'Imagem Excluida com Sucesso!');
-        die();
-    }
+    
 
 
 }

@@ -137,7 +137,7 @@ p {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  border: 1px solid #5495bc;
+  border: 1px solid #d90826;
   padding: 0 30px;
   font-size: 16px;
   line-height: 48px;
@@ -149,7 +149,7 @@ p {
   -ms-transition: all 0.4s ease-out 0s;
   -o-transition: all 0.4s ease-out 0s;
   transition: all 0.4s ease-out 0s;
-  background-color: #5495bc;
+  background-color: #d90826;
   -webkit-box-shadow: 0px 5px 16px 0px rgba(84 149 188, 0.65);
   -moz-box-shadow: 0px 5px 16px 0px rgba(84 149 188, 0.65);
   box-shadow: 0px 5px 16px 0px rgba(84 149 188, 0.65);
@@ -161,24 +161,24 @@ p {
 }
 .main-btn:hover {
   background-color: #fff;
-  color: #5495bc;
-  border-color: #5495bc;
+  color: #d90826;
+  border-color: #d90826;
 }
 .main-btn.main-btn-2 {
   background-color: #fff;
-  color: #5495bc;
-  border-color: #5495bc;
+  color: #d90826;
+  border-color: #d90826;
 }
 .main-btn.main-btn-2:hover {
-  background-color: #5495bc;
-  border-color: #5495bc;
+  background-color: #d90826;
+  border-color: #d90826;
   color: #fff;
 }
 
 /*===== All Section Title Style =====*/
 .section-title .sub-title {
   font-size: 18px;
-  color: #5495bc;
+  color: #d90826;
   text-transform: uppercase;
 }
 @media (max-width: 767px) {
@@ -309,7 +309,7 @@ p {
   height: 100%;
   border-style: solid;
   /* Spinner Color */
-  border-color: #5495bc #5495bc #ededed;
+  border-color: #d90826 #d90826 #ededed;
   border-radius: 50%;
   border-width: 6px;
 }
@@ -587,7 +587,7 @@ p {
   left: -80px;
 }
 .shape.header-shape-one span {
-  border: 61px solid #97c0d047;
+  border: 61px solid #f1c0c09e;
   width: 310px;
   height: 310px;
   border-radius: 156px;
@@ -610,7 +610,7 @@ p {
 .header-area .header-shape-tow span {
   width: 76px;
   height: 76px;
-  background-color: #e2edf254;
+  background-color: #f1c0c030;
   border-radius: 10px;
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -631,7 +631,7 @@ p {
 .header-area .header-shape-three span {
   width: 76px;
   height: 76px;
-  background-color: #e2edf254;
+  background-color: #f1c0c030;
   border-radius: 10px;
 }
 
@@ -651,7 +651,7 @@ p {
   transform: translateX(-50%);
 }
 .shape.header-shape-fore span {
-  border: 61px solid #97c0d047;
+  border: 61px solid #f1c0c09e;
   width: 310px;
   height: 310px;
   border-radius: 156px;
@@ -717,7 +717,7 @@ p {
   position: relative;
 }
 .navbar .navbar-brand img {
-  max-width: 112px;
+  max-width: 150px;
 }
 .navbar .navbar-toggler .toggler-icon {
   width: 30px;
@@ -791,7 +791,7 @@ p {
 }
 .navbar .navbar-nav .nav-item.active a,
 .navbar .navbar-nav .nav-item:hover a {
-  color: #5495bc;
+  color: #d90826;
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .navbar .navbar-btn {
@@ -835,7 +835,7 @@ p {
 }
 .header-banner .banner-content .sub-title {
   font-size: 24px;
-  color: #5495bc;
+  color: #d90826;
   text-transform: uppercase;
 }
 @media (max-width: 767px) {
@@ -847,7 +847,7 @@ p {
   font-size: 60px;
 }
 .header-banner .banner-content .banner-title span {
-  color: #5495bc;
+  color: #d90826;
 }
 @media (max-width: 767px) {
   .header-banner .banner-content .banner-title {
@@ -859,7 +859,7 @@ p {
   font-size: 15px;
   font-weight: 600;
   font-family: "Barlow", sans-serif;
-  color: #5495bc;
+  color: #d90826;
   text-transform: uppercase;
   margin-left: 70px;
 }
@@ -868,7 +868,7 @@ p {
   content: "";
   width: 60px;
   height: 2px;
-  background-color: #5495bc;
+  background-color: #d90826;
   left: -70px;
   top: 50%;
   -webkit-transform: translateY(-50%);
@@ -1004,7 +1004,7 @@ p {
   }
 }
 .about-image .about-btn .main-btn:hover {
-  border-color: #5495bc;
+  border-color: #d90826;
 }
 @media (max-width: 767px) {
   .about-image .about-btn .main-btn {
@@ -1025,7 +1025,7 @@ p {
 
 .about-content .about-welcome {
   font-size: 24px;
-  color: #5495bc;
+  color: #d90826;
   text-transform: uppercase;
 }
 @media (max-width: 767px) {
@@ -1075,7 +1075,7 @@ p {
 }
 .single-services .services-icon i {
   font-size: 52px;
-  color: #5495bc;
+  color: #d90826;
   -webkit-transition: all 0.4s ease-out 0s;
   -moz-transition: all 0.4s ease-out 0s;
   -ms-transition: all 0.4s ease-out 0s;
@@ -1093,7 +1093,7 @@ p {
   transition: all 0.4s ease-out 0s;
 }
 .single-services:hover {
-  background-color: #5495bc;
+  background-color: #d90826;
 }
 .single-services:hover .services-icon i {
   color: #fff;
@@ -1125,9 +1125,9 @@ p {
   width: 100%;
   height: 100%;
   background: white;
-  background: -webkit-linear-gradient(rgba(255, 255, 255, 0) 50%, #5495bc 100%);
-  background: -o-linear-gradient(rgba(255, 255, 255, 0) 50%, #5495bc 100%);
-  background: linear-gradient(rgba(255, 255, 255, 0) 50%, #5495bc 100%);
+  background: -webkit-linear-gradient(rgba(255, 255, 255, 0) 50%, #d90826 100%);
+  background: -o-linear-gradient(rgba(255, 255, 255, 0) 50%, #d90826 100%);
+  background: linear-gradient(rgba(255, 255, 255, 0) 50%, #d90826 100%);
   opacity: 0;
   -webkit-transition: all 0.4s ease-out 0s;
   -moz-transition: all 0.4s ease-out 0s;
@@ -1206,7 +1206,7 @@ p {
 }
 .project-active .slick-dots li.slick-active button {
   width: 35px;
-  background-color: #5495bc;
+  background-color: #d90826;
 }
 
 /*===========================
@@ -1251,7 +1251,7 @@ p {
   transition: all 0.4s ease-out 0s;
 }
 .single-team .team-content .team-name a:hover {
-  color: #5495bc;
+  color: #d90826;
 }
 .single-team .team-content .sub-title {
   font-size: 14px;
@@ -1287,7 +1287,7 @@ p {
   transition: all 0.4s ease-out 0s;
 }
 .single-team .team-content .social li a:hover {
-  background-color: #5495bc;
+  background-color: #d90826;
   color: #fff;
 }
 
@@ -1329,7 +1329,7 @@ p {
   left: 50px;
 }
 .testimonial-area .shape-one span {
-  border: 94px solid #97c0d047;
+  border: 94px solid #f1c0c09e;
   width: 540px;
   height: 540px;
   border-radius: 300px;
@@ -1345,7 +1345,7 @@ p {
   bottom: 50px;
 }
 .testimonial-area .shape-tow span {
-  border: 94px solid #97c0d047;
+  border: 94px solid #f1c0c09e;
   width: 540px;
   height: 540px;
   border-radius: 300px;
@@ -1360,7 +1360,7 @@ p {
   bottom: 30px;
 }
 .testimonial-area .shape-three span {
-  border: 94px solid #97c0d047;
+  border: 94px solid #f1c0c09e;
   width: 540px;
   height: 540px;
   border-radius: 300px;
@@ -1377,7 +1377,7 @@ p {
 }
 
 .testimonial-active {
-  background-color: #5495bc;
+  background-color: #d90826;
   padding: 60px 30px;
 }
 @media (max-width: 767px) {
@@ -1401,13 +1401,13 @@ p {
 }
 .single-testimonial .testimonial-image .quota i {
   font-size: 18px;
-  color: #5495bc;
+  color: #d90826;
   width: 30px;
   height: 30px;
   line-height: 28px;
   text-align: center;
   background-color: #fff;
-  border: 2px solid #5495bc;
+  border: 2px solid #d90826;
   border-radius: 50%;
 }
 
@@ -1625,7 +1625,7 @@ p.form-message.error {
   line-height: 40px;
   text-align: center;
   border-radius: 50%;
-  background-color: #5495bc0f;
+  background-color: #d908260f;
   color: #646464;
   font-size: 16px;
   -webkit-box-shadow: 0px 5px 21px 0px rgb(84 149 188 / 39%);
@@ -1638,7 +1638,7 @@ p.form-message.error {
   transition: all 0.4s ease-out 0s;
 }
 .footer-logo .footer-social li a:hover {
-  background-color: #5495bc;
+  background-color: #d90826;
   color: #fff;
 }
 
@@ -1662,7 +1662,7 @@ p.form-message.error {
   transition: all 0.4s ease-out 0s;
 }
 .footer-link ul li a:hover {
-  color: #5495bc;
+  color: #d90826;
 }
 
 .footer-newsleter p {
@@ -1677,8 +1677,8 @@ p.form-message.error {
   width: 100%;
   height: 50px;
   padding: 0 20px;
-  border: 1px solid #5495bc;
-  background-color: #5495bc0d;
+  border: 1px solid #d90826;
+  background-color: #d908260d;
 }
 .footer-newsleter .newsleter button {
   border: 0;
@@ -1690,7 +1690,7 @@ p.form-message.error {
   position: absolute;
   top: 0;
   right: 0;
-  color: #5495bc;
+  color: #d90826;
   font-size: 20px;
   line-height: 57px;
   cursor: pointer;
@@ -1707,7 +1707,7 @@ p.form-message.error {
   left: 0;
   width: 1px;
   height: 36px;
-  background-color: #5495bc;
+  background-color: #d90826;
   -webkit-transform: translateY(-50%);
   -moz-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
@@ -1740,9 +1740,9 @@ p.form-message.error {
   -o-transition: all 0.4s ease-out 0s;
   transition: all 0.4s ease-out 0s;
   color: #fff;
-  background-color: #5495bc;
+  background-color: #d90826;
 }
 .back-to-top:hover {
-  color: #5495bc;
+  color: #d90826;
   background-color: #fff;
 }
