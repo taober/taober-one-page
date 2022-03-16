@@ -32,18 +32,22 @@
                 <table id="data-table" class="table table-bordered table-hover">
                     <thead>
                         <tr>
-                            <th>Titulo</th>
-                            <th>Sub-titulo</th>
-                            <th width='100'>Ativo</th>
-                            <th></th>
+                            <th>{{$tipo->tipo_labels->titulo}}</th>
+                            @if( $tipo->tipo_labels->sub_titulo !== false)
+                                <th>{{$tipo->tipo_labels->sub_titulo}}</th>
+                            @endif
+                            <th width='80' class="text-center">{{$tipo->tipo_labels->ativo}}</th>
+                            <th width='100'></th>
                         </tr> 
                     </thead>
                     <tbody>
                         @foreach ($itens as $item)
                             <tr>
                                 <td>{{ $item->node_titulo }}</td>
-                                <td>{{ $item->node_subtitulo }}</td>
-                                <td>{{ $item->node_ativo == '0' ? 'Não' : 'Sim'  }}</td>
+                                @if( $tipo->tipo_labels->sub_titulo !== false)
+                                    <td>{{ $item->node_subtitulo }}</td>
+                                @endif
+                                <td class="text-center">{{ $item->node_ativo == '0' ? 'Não' : 'Sim'  }}</td>
                                 <td>
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-info">Ações</button>
@@ -61,9 +65,11 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th>Titulo</th>
-                            <th>Empresa</th>
-                            <th>Ativo</th>
+                            <th>{{$tipo->tipo_labels->titulo}}</th>
+                            @if( $tipo->tipo_labels->sub_titulo !== false)
+                                <th>{{$tipo->tipo_labels->sub_titulo}}</th>
+                            @endif
+                            <th width='100' class="text-center">{{$tipo->tipo_labels->ativo}}</th>
                             <th></th>
                         </tr>
                     </tfoot>

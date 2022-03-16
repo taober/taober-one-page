@@ -52,37 +52,39 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="row">
-                                            <div class="col-3">
+                                            <div class="col-2">
                                                 <div class="form-group">
-                                                    <label>Ativo</label>
+                                                    <label>{{$tipo->tipo_labels->ativo}}</label>
                                                     <select class="form-control" name="ativo">
                                                         <option value="1">SIM</option>
                                                         <option value="0" {{ isset($item->node_ativo ) && $item->node_ativo == '0' ? 'selected' : '' }}>NÂO</option>
                                                     </select>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-12">
+                                            <div class="col-10">
                                                 <div class="form-group">
-                                                    <label for="exampleInputEmail1">Titulo</label>
+                                                    <label for="exampleInputEmail1">{{$tipo->tipo_labels->titulo}}</label>
                                                     <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Titulo" value="{{ $item->node_titulo ?? '' }}">
                                                 </div>
                                             </div>
-                                            <div class="col-12">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">Sub-titulo</label>
-                                                    <input type="text" class="form-control" id="subtitulo" name="subtitulo" placeholder="Sub-titulo" value="{{ $item->node_subtitulo ?? '' }}">
+                                            @if( $tipo->tipo_labels->sub_titulo !== false)
+                                                <div class="col-12">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">{{$tipo->tipo_labels->sub_titulo}}</label>
+                                                        <input type="text" class="form-control" id="subtitulo" name="subtitulo" placeholder="Sub-titulo" value="{{ $item->node_subtitulo ?? '' }}">
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            @endif
                                         </div>
                                     </div>
+                                    @if( $tipo->tipo_labels->descricao !== false)
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1">Descrição</label>
+                                            <label for="exampleInputEmail1">{{$tipo->tipo_labels->descricao}}</label>
                                             <textarea class="form-control" id="conteudo" name="conteudo">{{ $item->node_conteudo ?? ''  }}</textarea>
                                         </div>
                                     </div>
+                                    @endif
                                 </div>
                             </div>
                             <!-- /.card-body -->

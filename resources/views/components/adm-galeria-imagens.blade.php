@@ -8,9 +8,9 @@
             <div class="card-header">
                 <h3 class="card-title">{{ $titulo }}</h3>
                 <div class="card-tools">
-                    <button type="submit" class="btn btn-primary ">
+                    {{-- <button type="submit" class="btn btn-primary ">
                         <i class="fas fa-save"></i> Salvar
-                    </button>    
+                    </button>     --}}
                 </div>
             </div>
             <!-- /.card-header -->
@@ -20,11 +20,16 @@
                     <div class="col-4">
                         <x-adminlte-input-file name="galeria_imagem" label="Imagem" placeholder="Escolha a imagem" disable-feedback/>
                     </div>
-                    <div class="col-8">
+                    <div class="col-6">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Titulo</label>
                             <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Título da imagem" value="">
                         </div>
+                    </div> 
+                    <div class="col-2">
+                        <button type="submit" class="btn btn-primary " style='margin-top:31px'>
+                            <i class="fas fa-save"></i> Upload
+                        </button> 
                     </div> 
                 </div>
                 <div class="row">

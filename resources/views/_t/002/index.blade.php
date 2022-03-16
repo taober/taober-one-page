@@ -11,16 +11,16 @@
     <title>{{ $site->titulo }}</title>
     {!! $site->google_search !!}
 
-    <link rel="shortcut icon" href="/_t/002/images/favicon.png" type="image/png">
-    <link rel="stylesheet" href="/_t/002/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/_t/002/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/_t/002/css/LineIcons.css">
-    <link rel="stylesheet" href="/_t/002/css/animate.css">
-    <link rel="stylesheet" href="/_t/002/css/aos.css">
-    <link rel="stylesheet" href="/_t/002/css/slick.css">
-    <link rel="stylesheet" href="/_t/002/css/lightbox.min.css">
-    <link rel="stylesheet" href="/_t/002/css/default.css">
-    <link rel="stylesheet" href="/_t/002/css/style.css">
+    <link rel="shortcut icon" href="/_t/001/images/favicon.png" type="image/png">
+    <link rel="stylesheet" href="/_t/001/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/_t/001/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/_t/001/css/LineIcons.css">
+    <link rel="stylesheet" href="/_t/001/css/animate.css">
+    <link rel="stylesheet" href="/_t/001/css/aos.css">
+    <link rel="stylesheet" href="/_t/001/css/slick.css">
+    <link rel="stylesheet" href="/_t/001/css/lightbox.min.css">
+    <link rel="stylesheet" href="/_t/001/css/default.css">
+    <link rel="stylesheet" href="/_t/001/css/style.css">
 </head>
 <body>
 
@@ -256,7 +256,7 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="single-team text-center mt-30 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="0.4s">
                         <div class="team-image">
-                            <img src="/_t/002/images/team/team-1.jpg" alt="Team">
+                            <img src="/_t/001/images/team/team-1.jpg" alt="Team">
                         </div>
                         <div class="team-content">
                             <h4 class="team-name"><a href="#">Rob Hope</a></h4>
@@ -272,7 +272,7 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="single-team text-center mt-30 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="0.8s">
                         <div class="team-image">
-                            <img src="/_t/002/images/team/team-2.jpg" alt="Team">
+                            <img src="/_t/001/images/team/team-2.jpg" alt="Team">
                         </div>
                         <div class="team-content">
                             <h4 class="team-name"><a href="#">Patric Green</a></h4>
@@ -288,7 +288,7 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="single-team text-center mt-30 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="1.2s">
                         <div class="team-image">
-                            <img src="/_t/002/images/team/team-3.jpg" alt="Team">
+                            <img src="/_t/001/images/team/team-3.jpg" alt="Team">
                         </div>
                         <div class="team-content">
                             <h4 class="team-name"><a href="#">Daryl Dixon</a></h4>
@@ -304,7 +304,7 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="single-team text-center mt-30 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="1.6s">
                         <div class="team-image">
-                            <img src="/_t/002/images/team/team-4.jpg" alt="Team">
+                            <img src="/_t/001/images/team/team-4.jpg" alt="Team">
                         </div>
                         <div class="team-content">
                             <h4 class="team-name"><a href="#">Mark Parker</a></h4>
@@ -328,18 +328,18 @@
         <section id="testimonial" class="testimonial-area pt-130 pb-130">
             <div class="shape shape-one">
                 <span></span>
-                {{-- <img src="/_t/002/images/testimonial/shape.png" alt="testimonial"> --}}
+                {{-- <img src="/_t/001/images/testimonial/shape.png" alt="testimonial"> --}}
             </div>
             <div class="shape shape-tow">
                 <span></span>
-                {{-- <img src="/_t/002/images/testimonial/shape.png" alt="testimonial"> --}}
+                {{-- <img src="/_t/001/images/testimonial/shape.png" alt="testimonial"> --}}
             </div>
             <div class="shape shape-three">
                 <span></span>
-                {{-- <img src="/_t/002/images/testimonial/shape.png" alt="testimonial"> --}}
+                {{-- <img src="/_t/001/images/testimonial/shape.png" alt="testimonial"> --}}
             </div>
             <div class="container">
-                <div class="testimonial-bg bg_cover pt-80 pb-80" style="background-image: url(/_t/002/images/testimonial/testimonial-bg.jpg)">
+                <div class="testimonial-bg bg_cover pt-80 pb-80" style="background-image: url(/_t/001/images/testimonial/testimonial-bg.jpg)">
                     <div class="row">
                         <div class="col-xl-4 offset-xl-7 col-lg-5 offset-lg-6 col-md-8 offset-md-2 col-sm-10 offset-sm-1">
                             <div class="testimonial-active">
@@ -349,7 +349,7 @@
                                         @if(isset($item->imagens{0}))
                                             <img src="{{asset('/imagens/'.$item->imagens{0}['imagem'])}}" alt="Testimonial" style="width:100px">
                                         @else
-                                            <img src="/_t/002/images/testimonial/shape.png" alt="Testimonial" style="width:100px">
+                                            <img src="/_t/001/images/testimonial/shape.png" alt="Testimonial" style="width:100px">
                                         @endif
                                         <div class="quota">
                                             <i class="lni-quotation"></i>
@@ -436,6 +436,7 @@
     <!--====== CONTACT PART ENDS ======-->
 
     <!--====== MAP PART START ======-->
+
     @if(!empty($site->google_maps) && !is_null($site->google_maps) && 1==2)
     <section id="map" class="map-area">
         <div class="mapouter">
@@ -443,7 +444,7 @@
                 <iframe id="gmap_canvas" src="https://maps.google.com/maps?q=university%20of%20san%20francisco&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
             </div>
         </div>
-        <div class="map-bg bg_cover d-none d-lg-block" style="background-image: url(/_t/002/images/map/map-bg.jpg)"></div>
+        <div class="map-bg bg_cover d-none d-lg-block" style="background-image: url(/_t/001/images/map/map-bg.jpg)"></div>
     </section>
     @endif
 
@@ -452,7 +453,7 @@
     <!--====== FOOTER PART START ======-->
 
     <footer id="footer" class="footer-area">
-        <div class="footer-widget pt-80 pb-40">
+        <div class="footer-widget pt-80 pb-130">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-4 col-md-4 col-sm-8">
@@ -513,7 +514,7 @@
                             </ul>
                         </div> <!-- footer logo -->
                     </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
+                    <div class="col-lg-4 col-md-4 col-sm-6">
                         <div class="footer-link mt-45">
                             <div class="f-title">
                                 <h4 class="title">Menu</h4>
@@ -522,22 +523,24 @@
                                 <li><a href="#">Home</a></li>
                                 <li><a href="#">Quem Somos</a></li>
                                 <li><a href="#">O que Fazemos</a></li>
-                                
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <div class="footer-link mt-45">
-                            <div class="f-title">
-                                <h4 class="title">&nbsp;</h4>
-                            </div>
-                            <ul class="mt-15">
                                 <li><a href="#">Projetos</a></li>
                                 <li><a href="#">Contatos</a></li>
                             </ul>
                         </div>
                     </div>
-                    {{-- <div class="col-lg-3 col-md-5 col-sm-8">
+                    {{-- <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="footer-link mt-45">
+                            <div class="f-title">
+                                <h4 class="title">Services</h4>
+                            </div>
+                            <ul class="mt-15">
+                                <li><a href="#">Product Design</a></li>
+                                <li><a href="#">Research</a></li>
+                                <li><a href="#">Office Management</a></li>
+                            </ul>
+                        </div>
+                    </div> --}}
+                    <div class="col-lg-3 col-md-5 col-sm-8">
                         <div class="footer-newsleter mt-45">
                             <div class="f-title">
                                 <h4 class="title">Newsleter</h4>
@@ -550,7 +553,7 @@
                                 </div>
                             </form>
                         </div>
-                    </div> --}}
+                    </div>
                 </div> <!-- row -->
             </div> <!-- container -->
         </div> <!-- footer widget -->
@@ -601,31 +604,31 @@
 
 
     <!--====== jquery js ======-->
-    <script src="/_t/002/js/vendor/modernizr-3.6.0.min.js"></script>
-    <script src="/_t/002/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="/_t/001/js/vendor/modernizr-3.6.0.min.js"></script>
+    <script src="/_t/001/js/vendor/jquery-1.12.4.min.js"></script>
 
     <!--====== Bootstrap js ======-->
-    <script src="/_t/002/js/bootstrap.min.js"></script>
+    <script src="/_t/001/js/bootstrap.min.js"></script>
 
     <!--====== WOW js ======-->
-    <script src="/_t/002/js/wow.min.js"></script>
+    <script src="/_t/001/js/wow.min.js"></script>
 
     <!--====== Slick js ======-->
-    <script src="/_t/002/js/slick.min.js"></script>
+    <script src="/_t/001/js/slick.min.js"></script>
 
     <!--====== Scrolling Nav js ======-->
-    <script src="/_t/002/js/scrolling-nav.js"></script>
-    <script src="/_t/002/js/jquery.easing.min.js"></script>
+    <script src="/_t/001/js/scrolling-nav.js"></script>
+    <script src="/_t/001/js/jquery.easing.min.js"></script>
 
     <!--====== Aos js ======-->
-    <script src="/_t/002/js/aos.js"></script>
+    <script src="/_t/001/js/aos.js"></script>
 
     <!--====== lightbox js ======-->
-    <script src="/_t/002/js/lightbox.min.js"></script>
+    <script src="/_t/001/js/lightbox.min.js"></script>
 
 
     <!--====== Main js ======-->
-    <script src="/_t/002/js/main.js"></script>
+    <script src="/_t/001/js/main.js"></script>
     {!! $site->google_analytcs !!}
 </body>
 

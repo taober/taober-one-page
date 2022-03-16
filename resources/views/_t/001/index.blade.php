@@ -21,6 +21,11 @@
     <link rel="stylesheet" href="/_t/001/css/lightbox.min.css">
     <link rel="stylesheet" href="/_t/001/css/default.css">
     <link rel="stylesheet" href="/_t/001/css/style.css">
+    @if( $site->css)
+        <style>
+            {!! $site->css !!}
+        </style>
+    @endif
 </head>
 <body>
 
@@ -94,7 +99,7 @@
                                         <a class="page-scroll" href="#projetos">Projetos</a>
                                     </li>
                                     <li class="nav-item">
-                                        {{-- <a class="page-scroll" href="#team">Nosso Time</a> --}}
+                                        <a class="page-scroll" href="#depoimentos">Depoimentos</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="page-scroll" href="#contatos">Contatos</a>
@@ -124,9 +129,7 @@
                         </div>
                     </div> <!-- row -->
                 </div> <!-- container -->
-                @foreach ($areaPrincipal->imagens as $imagem)
-                    <div class="banner-image bg_cover" style="background-image: url({{asset('/imagens/'.$imagem->imagem)}})"></div>
-                @endforeach
+                <div class="banner-image bg_cover" style="background-image: url({{asset('/imagens/'.$areaPrincipal->imagens{0}['imagem'])}})"></div>
             </div> <!-- header banner -->
         @endif
 
@@ -325,7 +328,7 @@
 
     <!--====== TESTIMONIAL PART START ======-->
     @if(count($depoimentos)>0)
-        <section id="testimonial" class="testimonial-area pt-130 pb-130">
+        <section id="depoimentos" class="testimonial-area pt-130 pb-130">
             <div class="shape shape-one">
                 <span></span>
                 {{-- <img src="/_t/001/images/testimonial/shape.png" alt="testimonial"> --}}
@@ -436,7 +439,6 @@
     <!--====== CONTACT PART ENDS ======-->
 
     <!--====== MAP PART START ======-->
-
     @if(!empty($site->google_maps) && !is_null($site->google_maps) && 1==2)
     <section id="map" class="map-area">
         <div class="mapouter">
@@ -453,7 +455,7 @@
     <!--====== FOOTER PART START ======-->
 
     <footer id="footer" class="footer-area">
-        <div class="footer-widget pt-80 pb-130">
+        <div class="footer-widget pt-80 pb-40">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-4 col-md-4 col-sm-8">
@@ -514,33 +516,32 @@
                             </ul>
                         </div> <!-- footer logo -->
                     </div>
-                    <div class="col-lg-4 col-md-4 col-sm-6">
+                    <div class="col-lg-3 col-md-3 col-sm-6">
                         <div class="footer-link mt-45">
                             <div class="f-title">
                                 <h4 class="title">Menu</h4>
                             </div>
                             <ul class="mt-15">
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">Quem Somos</a></li>
-                                <li><a href="#">O que Fazemos</a></li>
-                                <li><a href="#">Projetos</a></li>
-                                <li><a href="#">Contatos</a></li>
+                                <li><a class="page-scroll" href="#home">Home</a></li>
+                                <li><a class="page-scroll" href="#quem-somos">Quem Somos</a></li>
+                                <li><a class="page-scroll" href="#o-que-fazemos">O que Fazemos</a></li>
+                                
                             </ul>
                         </div>
                     </div>
-                    {{-- <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="col-lg-3 col-md-3 col-sm-6">
                         <div class="footer-link mt-45">
                             <div class="f-title">
-                                <h4 class="title">Services</h4>
+                                <h4 class="title">&nbsp;</h4>
                             </div>
                             <ul class="mt-15">
-                                <li><a href="#">Product Design</a></li>
-                                <li><a href="#">Research</a></li>
-                                <li><a href="#">Office Management</a></li>
+                                <li><a class="page-scroll" href="#projetos">Projetos</a></li>
+                                <li><a class="page-scroll" href="#depoimentos">Depoimentos</a></li>
+                                <li><a class="page-scroll" href="#contatos">Contatos</a></li>
                             </ul>
                         </div>
-                    </div> --}}
-                    <div class="col-lg-3 col-md-5 col-sm-8">
+                    </div>
+                    {{-- <div class="col-lg-3 col-md-5 col-sm-8">
                         <div class="footer-newsleter mt-45">
                             <div class="f-title">
                                 <h4 class="title">Newsleter</h4>
@@ -553,7 +554,7 @@
                                 </div>
                             </form>
                         </div>
-                    </div>
+                    </div> --}}
                 </div> <!-- row -->
             </div> <!-- container -->
         </div> <!-- footer widget -->
@@ -630,6 +631,10 @@
     <!--====== Main js ======-->
     <script src="/_t/001/js/main.js"></script>
     {!! $site->google_analytcs !!}
+    @if( $site->js)
+        <script>
+            {!! $site->js !!}
+        </script>
+    @endif
 </body>
-
 </html>

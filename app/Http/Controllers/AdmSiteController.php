@@ -24,6 +24,7 @@ class AdmSiteController extends Controller
     public function index()
     {
         $site = auth()->user()->site()->first();
+        //dd($site);
         return view('AdmSiteEdita',[
             'site' => $site
         ]);
@@ -45,6 +46,8 @@ class AdmSiteController extends Controller
             'social_linkedin' => $request->linkedin,
             'email' => $request->email,
             'whatsapp' => $request->whatsapp,
+            'css' => $request->css,
+            'js' => $request->js,
         ];
 
 

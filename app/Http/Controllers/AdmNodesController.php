@@ -14,20 +14,21 @@ class AdmNodesController extends Controller
      *
      * @return void
      */
+
     public function __construct()
     {
         $this->middleware('auth');
     }
 
+
     public function index($tipo)
     {
 
         $site_id = auth()->user()->site()->first()->id;
-        //dd($site->id);
         $tipo = DB::table('nodes_tipos')
-            ->where('tipo_nome', $tipo)
-            ->first();
-    
+        ->where('tipo_nome', $tipo)
+        ->first();
+        $tipo->tipo_labels = json_decode($tipo->tipo_labels);
         $nodes = DB::table('nodes')
             ->where('site_id', $site_id )
             ->where('tipo_id', $tipo->tipo_id)
@@ -51,8 +52,9 @@ class AdmNodesController extends Controller
     {
 
         $tipo = DB::table('nodes_tipos')
-        ->where('tipo_nome', $tipo)
+            ->where('tipo_nome', $tipo)
             ->first();
+        $tipo->tipo_labels = json_decode($tipo->tipo_labels);
 
         return view('AdmNodesEdita', [
             'tipo' => $tipo
@@ -63,7 +65,7 @@ class AdmNodesController extends Controller
     {
 
         $site_id = auth()->user()->site()->first()->id;
-        //dd($site_id);
+
         $node = DB::table('nodes')
         ->where('node_id', $id)
         ->where('site_id', $site_id)
@@ -72,6 +74,7 @@ class AdmNodesController extends Controller
         $tipo = DB::table('nodes_tipos')
         ->where('tipo_id', $node->tipo_id)
         ->first();
+        $tipo->tipo_labels = json_decode($tipo->tipo_labels);
 
         $imagens = DB::table('imagens')
         ->where('ref_id', $id)

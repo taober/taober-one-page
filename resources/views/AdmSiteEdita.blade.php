@@ -143,7 +143,20 @@
                                                 <input type="text" class="form-control" id="whatsapp" name="whatsapp" placeholder="Whatsapp" value="{{ $site->whatsapp ?? ''  }}">
                                             </div>
                                         </div>
+                                         <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">CSS</label>
+                                                <textarea class="form-control" rows="10" id="css" name="css">{{ $site->css ?? ''  }}</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">JS</label>
+                                                <textarea class="form-control" rows="10" id="js" name="js">{{ $site->js ?? ''  }}</textarea>
+                                            </div>
+                                        </div>
                                     </div>
+                                   
                                 
                             </div>
                             <!-- /.card-body -->

@@ -36,11 +36,11 @@ Route::get('/admin', [App\Http\Controllers\DashboardController::class, 'index'])
     Route::get('/admin/taober/backup_database', [App\Http\Controllers\AdmTaoberController::class, 'backup_database'])->name('index');
     Route::get('/admin/taober/phpconfig', function () { phpinfo(); });
 
-    Route::get('/admin/sites/', [App\Http\Controllers\AdmSitesController::class, 'index'])->name('index');
-    Route::get('/admin/sites/novo', [App\Http\Controllers\AdmSitesController::class, 'novo'])->name('novo');
-    Route::get('/admin/sites/{id}', [App\Http\Controllers\AdmSitesController::class, 'edita'])->name('edita');
-    Route::get('/admin/sites/deletar/{id}', [App\Http\Controllers\AdmSitesController::class, 'deletar'])->name('deletar');
-    Route::post('/admin/sites/salvar', [App\Http\Controllers\AdmSitesController::class, 'salvar'])->name('salvar');
+    // Route::get('/admin/sites/', [App\Http\Controllers\AdmSitesController::class, 'index'])->name('index');
+    // Route::get('/admin/sites/novo', [App\Http\Controllers\AdmSitesController::class, 'novo'])->name('novo');
+    // Route::get('/admin/sites/{id}', [App\Http\Controllers\AdmSitesController::class, 'edita'])->name('edita');
+    // Route::get('/admin/sites/deletar/{id}', [App\Http\Controllers\AdmSitesController::class, 'deletar'])->name('deletar');
+    // Route::post('/admin/sites/salvar', [App\Http\Controllers\AdmSitesController::class, 'salvar'])->name('salvar');
 
     Route::get('/admin/site/', [App\Http\Controllers\AdmSiteController::class, 'index'])->name('index');
     Route::post('/admin/site/salvar', [App\Http\Controllers\AdmSiteController::class, 'salvar'])->name('salvar');
