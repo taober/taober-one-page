@@ -9,5 +9,4 @@ class Imagens extends Model
 {
     protected $table = 'imagens';
     protected $primaryKey = 'id';
-
 }

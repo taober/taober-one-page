@@ -24,13 +24,14 @@ class AdmTaoberController extends Controller
 
     public function backup_database()
     {
-        $mysqlHostName      = env('DB_HOST');
-        $mysqlUserName      = env('DB_USERNAME');
-        $mysqlPassword      = env('DB_PASSWORD');
-        $DbName             = env('DB_DATABASE');
+        $mysqlHostName      = '127.0.0.1';//env('DB_HOST');
+        $mysqlUserName      = 'taober';
+        $mysqlPassword      = 897718;
+        $DbName             = 'taober_one_page';
         $backup_name        = "backup.sql";
-        $tables             = array("banners_principais", "depoimentos", "imagens", "portifolios","que_fazemos", "quem_somos","sites", "templates","users"); //here your tables...
-
+        $tables             = array(
+            'nodes', 'nodes_tipos', 'sites', 'templates', 'users', 'imagens'
+        ); 
         $connect = new \PDO("mysql:host=$mysqlHostName;dbname=$DbName;charset=utf8", "$mysqlUserName", "$mysqlPassword", array(\PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
         $get_all_table_query = "SHOW TABLES";
         $statement = $connect->prepare($get_all_table_query);
