@@ -104,6 +104,7 @@ class SiteController extends Controller
             'google_analytcs' => $request->google_analytcs,
             'google_search' => $request->google_search,
             'google_maps' => $request->google_maps,
+            'facebook_pixel' => $request->facebook_pixel,
             'tituloimagens' => $request->tituloimagens,
             'textoimagens' => $request->textoimagens,
             'tituloplantas' => $request->tituloplantas,

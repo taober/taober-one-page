@@ -41,6 +41,7 @@ class AdmSiteController extends Controller
             'google_analytcs' => $request->google_analytcs,
             'google_search' => $request->google_search,
             'google_maps' => $request->google_maps,
+            'social_facebook_pixel' => $request->facebook_pixel,
             'social_facebook' => $request->facebook,
             'social_instagram' => $request->instagram,
             'social_linkedin' => $request->linkedin,

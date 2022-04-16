@@ -143,6 +143,12 @@
                                                 <input type="text" class="form-control" id="whatsapp" name="whatsapp" placeholder="Whatsapp" value="{{ $site->whatsapp ?? ''  }}">
                                             </div>
                                         </div>
+                                         <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Facebook Pixel</label>
+                                                <input type="text" class="form-control" id="facebook_pixel" name="facebook_pixel" placeholder="pixel" value="{{ $site->social_facebook_pixel ?? ''  }}">
+                                            </div>
+                                        </div>
                                          <div class="col-6">
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">CSS</label>
