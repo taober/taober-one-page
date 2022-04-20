@@ -237,23 +237,25 @@
             <div class="container-fluid">
                 <div class="row project-active">
                     @foreach ($portifolios as $item)
-                        <div class="col-lg-4 div-project">
-                            <div class="single-project">
-                                <div class="project-image">
-                                    <img src="{{asset('/imagens/'.$item->imagens{0}['imagem'] )}}" alt="{{$item->imagens{0}['titulo']}}">
+                        @if(isset($item->imagens{0}))
+                            <div class="col-lg-4 div-project">
+                                <div class="single-project">
+                                    <div class="project-image">
+                                        <img src="{{asset('/imagens/'.$item->imagens{0}['imagem'] )}}" alt="{{$item->imagens{0}['titulo']}}">
+                                    </div>
+                                    <div class="project-content">
+                                        <a class="project-title btn-portifolio" href="#">{{$item->node_titulo}}</a>
+                                    </div>
                                 </div>
-                                <div class="project-content">
-                                    <a class="project-title btn-portifolio" href="#">{{$item->node_titulo}}</a>
+                                <div class="galeria d-none">
+                                    @foreach ($item->imagens as $imagem)
+                                        <a class="example-image-link {{($loop->index>0)? 'd-none' : ''}}" href="{{asset('/imagens/'.$imagem->imagem)}}" data-lightbox="example-set-{{$item->node_id}}" data-title="{{$imagem->titulo}}">
+                                            <img class="example-image" src="{{asset('/imagens/'.$imagem->imagem)}}" alt=""/>
+                                        </a>
+                                    @endforeach
                                 </div>
                             </div>
-                            <div class="galeria d-none">
-                                @foreach ($item->imagens as $imagem)
-                                    <a class="example-image-link {{($loop->index>0)? 'd-none' : ''}}" href="{{asset('/imagens/'.$imagem->imagem)}}" data-lightbox="example-set-{{$item->node_id}}" data-title="{{$imagem->titulo}}">
-                                        <img class="example-image" src="{{asset('/imagens/'.$imagem->imagem)}}" alt=""/>
-                                    </a>
-                                @endforeach
-                            </div>
-                        </div>
+                        @endif
                     @endforeach
                 </div>
             </div>
