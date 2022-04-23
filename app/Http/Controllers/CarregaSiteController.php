@@ -42,13 +42,12 @@ class CarregaSiteController extends Controller
         if ($area_principal = Nodes::where('site_id', $site->id)->where('tipo_id', '1')->first()) {
             $area_principal->imagens = $area_principal->imagens()->orderBy('favorita', 'desc')->get();
         }
-        //dd($area_principal->imagens);
 
         if ($quem_somos = Nodes::where('site_id', $site->id)->where('tipo_id', '4')->first()) {
             $quem_somos->imagens = $quem_somos->imagens()->orderBy('favorita', 'desc')->get();
         }
 
-        $que_fazemos = Nodes::where('site_id', $site->id)->where('tipo_id', '3')->get();
+        $que_fazemos = Nodes::where('site_id', $site->id)->where('tipo_id', '3')->orderBy('node_id', 'asc')->get();
 
         $portifolios = Nodes::where('site_id', $site->id)->where('tipo_id', '2')->get();
         foreach ($portifolios as &$item) {
@@ -59,7 +58,7 @@ class CarregaSiteController extends Controller
         foreach ($depoimentos as &$item) {
             $item->imagens = $item->imagens()->orderBy('favorita', 'desc')->get();
         }
-        //dd($template->dir);
+        //dd($depoimentos);
         return view('_t/' . $template->dir . '/index', [
             'site' => $site,
             'portifolios' => $portifolios,

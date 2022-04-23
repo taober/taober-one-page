@@ -20,6 +20,7 @@
                 <div class="col-12">
                     <form action="/admin/nodes/salvar" method="post" enctype="multipart/form-data"> 
                         <input type="hidden" name="tipo" value="{{ $tipo->tipo_id }}">
+                        <input type="hidden" name="pai" value="{{ $node_pai }}">
                         <input type="hidden" name="id" value="{{ $item->node_id ?? '' }}">
                         @csrf  
                         <div class="card card-primary card-outline">
@@ -30,7 +31,7 @@
                                     <h3 class="card-title">Novo</h3>
                                 @endif
                                 <div class="card-tools">
-                                    @if(isset($item->node_id))
+                                    @if(isset($item->node_id) && 1==2)
                                         <a href="/admin/site/preview/{{ $item->node_id}}" target="_blank">
                                         <button type="button" class="btn btn-default ">
                                             <i class="fas fa-eye"></i> Preview
@@ -91,12 +92,91 @@
                         </div>
                     </form>
                 </div>
-                @if(isset($item->node_id))
+                @if($tipo->tipo_labels->node_capa && isset($item->node_id))
+                    <div class="col-12">
+                        <div class="card card-primary card-outline">
+                            <div class="card-header">
+                                <h3 class="card-title">Listagem</h3>
+                                <div class="card-tools">
+                                    <a href="/admin/nodes/novo/{{ $tipo->tipo_nome }}">
+                                        <button type="button" class="btn btn-primary btn-sm">
+                                            <i class="fas fa-plus"></i> Novo
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table id="data-table" class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>{{$tipo->tipo_labels->titulo}}</th>
+                                            @if( $tipo->tipo_labels->sub_titulo !== false)
+                                                <th>{{$tipo->tipo_labels->sub_titulo}}</th>
+                                            @endif
+                                            <th width='80' class="text-center">{{$tipo->tipo_labels->ativo}}</th>
+                                            <th width='100'></th>
+                                        </tr> 
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($itens as $item_tr)
+                                            <tr>
+                                                <td>{{ $item_tr->node_titulo }}</td>
+                                                @if( $tipo->tipo_labels->sub_titulo !== false)
+                                                    <td>{{ $item_tr->node_subtitulo }}</td>
+                                                @endif
+                                                <td class="text-center">{{ $item_tr->node_ativo == '0' ? 'Não' : 'Sim'  }}</td>
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <button type="button" class="btn btn-info">Ações</button>
+                                                        <button type="button" class="btn btn-info dropdown-toggle dropdown-icon" data-toggle="dropdown">
+                                                        <span class="sr-only">Toggle Dropdown</span>
+                                                        </button>
+                                                        <div class="dropdown-menu" role="menu">
+                                                        <a class="dropdown-item" href="/admin/nodes/{{ $item_tr->node_id }}">Editar</a>
+                                                        <a class="dropdown-item" href="/admin/nodes/deletar/{{ $item_tr->node_id }}">Exluir</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>{{$tipo->tipo_labels->titulo}}</th>
+                                            @if( $tipo->tipo_labels->sub_titulo !== false)
+                                                <th>{{$tipo->tipo_labels->sub_titulo}}</th>
+                                            @endif
+                                            <th width='100' class="text-center">{{$tipo->tipo_labels->ativo}}</th>
+                                            <th></th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                    </div>
+                @endif 
+                @if($tipo->tipo_labels->galeria && isset($item->node_id))
                     <!-- /resources/views/components/adm-galeria-imagens.blade.php -->
                     <x-adm-galeria-imagens titulo="Galeria de Imagens" :xrefid="$item->node_id" xrefnome="nodes" :imagens="$imagens"/>
-                @endif 
+                @endif
             </div>
         </div>
         
     </section>
+@stop
+
+@section('js')
+    <script>
+        $('#data-table').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+    </script>
 @stop

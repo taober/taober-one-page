@@ -15,9 +15,31 @@ class AdmNodesController extends Controller
      * @return void
      */
 
+    var $node_propriedades = [
+        "ativo"      => "Ativo",    // 'string' ou false
+        "titulo"     => "Título",   // 'string' ou false
+        "sub_titulo" => false,      // 'string' ou false
+        "descricao"  => false,      // 'string' ou false
+        'galeria'    => true,       // true ou false
+        "node_capa"  => false,      // true ou false
+    ];
+
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+    function propriedades($node_capa, $propriedades){
+        $this->node_propriedades['node_capa'] = $node_capa;
+        $dados1 =  json_encode($this->node_propriedades);
+        $dados2 =  json_decode($propriedades);
+        $dados2 = json_encode( ($node_capa) ? $dados2->lista : (isset($dados2->node) ? $dados2->node : $dados2)) ;
+        $dados  = array_merge(
+            json_decode($dados1, true),
+            json_decode($dados2, true)
+        );
+        $res = json_decode(json_encode($dados, JSON_FORCE_OBJECT));
+        return $res;
     }
 
 
@@ -29,18 +51,19 @@ class AdmNodesController extends Controller
         ->where('tipo_nome', $tipo)
         ->first();
         $tipo->tipo_labels = json_decode($tipo->tipo_labels);
+
         $nodes = DB::table('nodes')
             ->where('site_id', $site_id )
             ->where('tipo_id', $tipo->tipo_id)
             ->get();
 
-        if($tipo->tipo_lista == 0){
+        //if($tipo->tipo_lista == 0){
             if($nodes->count() == 0){
                 return redirect('admin/nodes/novo/' . $tipo->tipo_nome);
             }else{
                 return redirect('admin/nodes/' . $nodes{0}->node_id);
             }
-        }
+        //}
 
         return view('AdmNodesLista', [
             'tipo' => $tipo,
@@ -50,14 +73,23 @@ class AdmNodesController extends Controller
 
     public function novo($tipo)
     {
+        $site_id = auth()->user()->site()->first()->id;
 
         $tipo = DB::table('nodes_tipos')
             ->where('tipo_nome', $tipo)
             ->first();
-        $tipo->tipo_labels = json_decode($tipo->tipo_labels);
+
+        $nodes = DB::table('nodes')
+            ->where('site_id', $site_id)
+            ->where('tipo_id', $tipo->tipo_id)
+            ->first();
+        $node_capa = (!isset($nodes->node_id));
+        $node_id = (isset($nodes->node_id)) ? $nodes->node_id : 0;
+        $tipo->tipo_labels = $this->propriedades($node_capa, $tipo->tipo_labels);
 
         return view('AdmNodesEdita', [
-            'tipo' => $tipo
+            'tipo' => $tipo,
+            'node_pai' => $node_id
         ]);
     }
 
@@ -67,25 +99,37 @@ class AdmNodesController extends Controller
         $site_id = auth()->user()->site()->first()->id;
 
         $node = DB::table('nodes')
-        ->where('node_id', $id)
-        ->where('site_id', $site_id)
-        ->first();
+            ->where('node_id', $id)
+            ->where('site_id', $site_id)
+            ->first();
 
         $tipo = DB::table('nodes_tipos')
-        ->where('tipo_id', $node->tipo_id)
-        ->first();
-        $tipo->tipo_labels = json_decode($tipo->tipo_labels);
+            ->where('tipo_id', $node->tipo_id)
+            ->first();
 
+        $nodes = DB::table('nodes')
+            ->where('site_id', $site_id)
+            ->where('tipo_id', $tipo->tipo_id)
+            ->where('node_pai', $id)
+            ->get();
+        $node_capa = ($tipo->tipo_lista == '1' && $node->node_pai == '0');
+
+        $tipo->tipo_labels = $this->propriedades($node_capa, $tipo->tipo_labels);
+        
         $imagens = DB::table('imagens')
-        ->where('ref_id', $id)
-        ->where('ref_nome', 'nodes')
-        ->orderBy('favorita', 'DESC')
-        ->get();
+            ->where('ref_id', $id)
+            ->where('ref_nome', 'nodes')
+            ->orderBy('favorita', 'DESC')
+            ->get();
+
+        //dd($tipo->tipo_labels);
 
         return view('AdmNodesEdita', [
             'tipo' => $tipo,
             'item' => $node,
-            'imagens' => $imagens
+            'itens' => $nodes,
+            'imagens' => $imagens,
+            'node_pai' => $node->node_pai
         ]);
     }
 
@@ -100,7 +144,8 @@ class AdmNodesController extends Controller
             'node_titulo' => $request->titulo,
             'node_subtitulo' => $request->subtitulo,
             'node_conteudo' => $request->conteudo,
-            'node_link' => $request->link
+            'node_link' => $request->link,
+            'node_pai' => $request->pai
         ];
 
         $node_id = $request->id;

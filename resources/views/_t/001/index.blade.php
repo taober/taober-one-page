@@ -133,7 +133,7 @@
             </div> <!-- container -->
         </div> <!-- navigation bar -->
 
-        @if($areaPrincipal)
+        @if($areaPrincipal && isset($areaPrincipal->imagens{0}['imagem']))
             <div class="header-banner d-flex align-items-center">
                 <div class="container">
                     <div class="row">
@@ -195,13 +195,14 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-6">
                         <div class="section-title text-center pb-20">
-                            <h5 class="sub-title mb-15">O que Fazemos</h5>
-                            <h2 class="title">Sub Titulo</h2>
+                            <h5 class="sub-title mb-15">{{ $queFazemos{0}['node_titulo'] }}</h5>
+                            <h2 class="title">{{ $queFazemos{0}['node_subtitulo'] }}</h2>
                         </div> <!-- section title -->
                     </div>
                 </div> <!-- row -->
                 <div class="row justify-content-center">
                     @foreach ($queFazemos as $item)
+                        @continue($item->node_pai == '0')
                         <div class="col-lg-4 col-md-6 col-sm-8">
                             <div class="single-services text-center mt-30 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="0.4s">
                                 {{-- <div class="services-icon">
@@ -228,8 +229,8 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-6">
                         <div class="section-title text-center pb-50">
-                            <h5 class="sub-title mb-15">Projetos</h5>
-                            <h2 class="title">Alguns projetos que amamos</h2>
+                            <h5 class="sub-title mb-15">{{ $portifolios{0}['node_titulo'] }}</h5>
+                            <h2 class="title">{{ $portifolios{0}['node_subtitulo'] }}</h2>
                         </div> <!-- section title -->
                     </div>
                 </div> <!-- row -->
@@ -237,6 +238,7 @@
             <div class="container-fluid">
                 <div class="row project-active">
                     @foreach ($portifolios as $item)
+                    @continue($item->node_pai == '0')
                         @if(isset($item->imagens{0}))
                             <div class="col-lg-4 div-project">
                                 <div class="single-project">
@@ -351,39 +353,45 @@
         <section id="depoimentos" class="testimonial-area pt-130 pb-130">
             <div class="shape shape-one">
                 <span></span>
-                {{-- <img src="/_t/001/images/testimonial/shape.png" alt="testimonial"> --}}
             </div>
             <div class="shape shape-tow">
                 <span></span>
-                {{-- <img src="/_t/001/images/testimonial/shape.png" alt="testimonial"> --}}
             </div>
             <div class="shape shape-three">
                 <span></span>
-                {{-- <img src="/_t/001/images/testimonial/shape.png" alt="testimonial"> --}}
             </div>
             <div class="container">
-                <div class="testimonial-bg bg_cover pt-80 pb-80" style="background-image: url(/_t/001/images/testimonial/testimonial-bg.jpg)">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <div class="section-title text-center pb-50">
+                            <h5 class="sub-title mb-15">{{ $depoimentos{0}['node_titulo'] }}</h5>
+                            <h2 class="title">{{ $depoimentos{0}['node_subtitulo'] }}</h2>
+                        </div> <!-- section title -->
+                    </div>
+                </div> <!-- row -->
+                <div class="testimonial-bg bg_cover pt-80 pb-80" style="background-image: url({{asset('/imagens/'.$depoimentos{0}['imagens'][0]['imagem'])}})">
                     <div class="row">
                         <div class="col-xl-4 offset-xl-7 col-lg-5 offset-lg-6 col-md-8 offset-md-2 col-sm-10 offset-sm-1">
                             <div class="testimonial-active">
                                 @foreach ($depoimentos as $item)
-                                <div class="single-testimonial text-center">
-                                    <div class="testimonial-image">
-                                        @if(isset($item->imagens{0}))
-                                            <img src="{{asset('/imagens/'.$item->imagens{0}['imagem'])}}" alt="Testimonial" style="width:100px">
-                                        @else
-                                            <img src="/_t/001/images/testimonial/shape.png" alt="Testimonial" style="width:100px">
-                                        @endif
-                                        <div class="quota">
-                                            <i class="lni-quotation"></i>
+                                    @continue($item->node_pai == '0')
+                                    <div class="single-testimonial text-center">
+                                        <div class="testimonial-image">
+                                            @if(isset($item->imagens{0}))
+                                                <img src="{{asset('/imagens/'.$item->imagens{0}['imagem'])}}" alt="Testimonial" style="width:100px">
+                                            @else
+                                                <img src="/_t/001/images/testimonial/shape.png" alt="Testimonial" style="width:100px">
+                                            @endif
+                                            <div class="quota">
+                                                <i class="lni-quotation"></i>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="testimonial-content mt-20">
-                                        <p>{{$item->node_conteudo}}</p>
-                                        <h5 class="testimonial-name mt-15">{{$item->node_titulo}}</h5>
-                                        <span class="sub-title">{{$item->node_subtitulo}}</span>
-                                    </div>
-                                </div> <!-- single-testimonial -->
+                                        <div class="testimonial-content mt-20">
+                                            <p>{{$item->node_conteudo}}</p>
+                                            <h5 class="testimonial-name mt-15">{{$item->node_titulo}}</h5>
+                                            <span class="sub-title">{{$item->node_subtitulo}}</span>
+                                        </div>
+                                    </div> <!-- single-testimonial -->
                                 @endforeach
                             </div> <!--  testimonial active -->
                         </div>
