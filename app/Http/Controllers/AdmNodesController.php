@@ -83,8 +83,9 @@ class AdmNodesController extends Controller
             ->where('site_id', $site_id)
             ->where('tipo_id', $tipo->tipo_id)
             ->first();
-        $node_capa = (!isset($nodes->node_id));
+        $node_capa = (!isset($nodes->node_id) && $tipo->tipo_lista == 1);
         $node_id = (isset($nodes->node_id)) ? $nodes->node_id : 0;
+        //dd(isset($nodes->node_id), $node_id, $tipo->tipo_labels);
         $tipo->tipo_labels = $this->propriedades($node_capa, $tipo->tipo_labels);
 
         return view('AdmNodesEdita', [
@@ -113,8 +114,10 @@ class AdmNodesController extends Controller
             ->where('node_pai', $id)
             ->get();
         $node_capa = ($tipo->tipo_lista == '1' && $node->node_pai == '0');
-
-        $tipo->tipo_labels = $this->propriedades($node_capa, $tipo->tipo_labels);
+        $labels = $tipo->tipo_labels;
+        $tipo->tipo_labels = $this->propriedades($node_capa, $labels);
+        //$tipo->tipo_labels_lista = [];
+        $tipo->tipo_labels_lista = $this->propriedades(false, $labels);
         
         $imagens = DB::table('imagens')
             ->where('ref_id', $id)

@@ -110,11 +110,11 @@
                                 <table id="data-table" class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
-                                            <th>{{$tipo->tipo_labels->titulo}}</th>
-                                            @if( $tipo->tipo_labels->sub_titulo !== false)
-                                                <th>{{$tipo->tipo_labels->sub_titulo}}</th>
+                                            <th>{{$tipo->tipo_labels_lista->titulo}}</th>
+                                            @if( $tipo->tipo_labels_lista->sub_titulo !== false)
+                                                <th>{{$tipo->tipo_labels_lista->sub_titulo}}</th>
                                             @endif
-                                            <th width='80' class="text-center">{{$tipo->tipo_labels->ativo}}</th>
+                                            <th width='80' class="text-center">{{$tipo->tipo_labels_lista->ativo}}</th>
                                             <th width='100'></th>
                                         </tr> 
                                     </thead>
@@ -122,7 +122,7 @@
                                         @foreach ($itens as $item_tr)
                                             <tr>
                                                 <td>{{ $item_tr->node_titulo }}</td>
-                                                @if( $tipo->tipo_labels->sub_titulo !== false)
+                                                @if( $tipo->tipo_labels_lista->sub_titulo !== false)
                                                     <td>{{ $item_tr->node_subtitulo }}</td>
                                                 @endif
                                                 <td class="text-center">{{ $item_tr->node_ativo == '0' ? 'Não' : 'Sim'  }}</td>
@@ -143,11 +143,11 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <th>{{$tipo->tipo_labels->titulo}}</th>
-                                            @if( $tipo->tipo_labels->sub_titulo !== false)
-                                                <th>{{$tipo->tipo_labels->sub_titulo}}</th>
+                                            <th>{{$tipo->tipo_labels_lista->titulo}}</th>
+                                            @if( $tipo->tipo_labels_lista->sub_titulo !== false)
+                                                <th>{{$tipo->tipo_labels_lista->sub_titulo}}</th>
                                             @endif
-                                            <th width='100' class="text-center">{{$tipo->tipo_labels->ativo}}</th>
+                                            <th width='100' class="text-center">{{$tipo->tipo_labels_lista->ativo}}</th>
                                             <th></th>
                                         </tr>
                                     </tfoot>
