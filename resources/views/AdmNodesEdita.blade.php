@@ -47,9 +47,14 @@
                             <div class="card-body">
                                 @if(session('mensagem_sucesso'))
                                     <div class="alert alert-success">
-                                        <p>{{session('mensagem_sucesso')}}</p>
+                                        <span>{{session('mensagem_sucesso')}}</span>
                                     </div>
-                                @endif                 
+                                @endif 
+                                @if(session('mensagem_error'))
+                                    <div class="alert alert-danger">
+                                        <span>{{session('mensagem_error')}}</span>
+                                    </div>
+                                @endif                     
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="row">

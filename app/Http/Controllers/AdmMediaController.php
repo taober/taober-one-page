@@ -10,6 +10,8 @@ use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Support\Str;
 
 ini_set('max_execution_time', 680);
+ini_set('upload_max_filesize', 5000);
+ini_set('post_max_size', 5000);
 
 class AdmMediaController extends Controller
 {
@@ -42,8 +44,9 @@ class AdmMediaController extends Controller
             'ref_id' => $xref_id,
             'titulo' => $titulo
         ];
-
+        //dd($request->file('galeria_imagem'));
         //dd($request->file('galeria_imagem')->isValid());
+        //dd($request->file('galeria_imagem')->getErrorMessage());
 
         
         if ($request->hasFile('galeria_imagem') && $request->file('galeria_imagem')->isValid()) {
@@ -53,7 +56,11 @@ class AdmMediaController extends Controller
             $titulo_slug = Str::slug($titulo);
 
             $imagem_nome = "{$_SESSION['site_id']}-{$xref_nome}-{$titulo_slug}-{$imagem_id}.webp";
-            $resizeImage = Image::make($request->file('galeria_imagem')->getRealPath())->encode('webp', 100);
+            $resizeImage = Image::make($request->file('galeria_imagem')->getRealPath())->resize(600, 600, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            });
+            $resizeImage->encode('webp', 100);
             $resizeImage->save(storage_path('app/imagens/' . $imagem_nome));
             $dados['imagem'] = $imagem_nome;
 
@@ -67,7 +74,8 @@ class AdmMediaController extends Controller
             die();
 
         }else{
-            return redirect()->back()->with('mensagem_sucesso', 'Ocorreu um erro!');
+            $erro = $request->file('galeria_imagem')->getErrorMessage();
+            return redirect()->back()->with('mensagem_error', 'Ocorreu um erro: ' . $erro  );
             die();
         }
 
