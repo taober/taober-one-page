@@ -56,7 +56,7 @@ class AdmMediaController extends Controller
             $titulo_slug = Str::slug($titulo);
 
             $imagem_nome = "{$_SESSION['site_id']}-{$xref_nome}-{$titulo_slug}-{$imagem_id}.webp";
-            $resizeImage = Image::make($request->file('galeria_imagem')->getRealPath())->resize(600, 600, function ($constraint) {
+            $resizeImage = Image::make($request->file('galeria_imagem')->getRealPath())->resize(900, 900, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
             });
