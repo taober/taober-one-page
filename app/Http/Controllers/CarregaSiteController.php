@@ -49,7 +49,7 @@ class CarregaSiteController extends Controller
 
         $que_fazemos = Nodes::where('site_id', $site->id)->where('tipo_id', '3')->orderBy('node_id', 'asc')->get();
 
-        $portifolios = Nodes::where('site_id', $site->id)->where('tipo_id', '2')->get();
+        $portifolios = Nodes::where('site_id', $site->id)->where('tipo_id', '2')->where('node_ativo', '1')->get();
         foreach ($portifolios as &$item) {
             $item->imagens = $item->imagens()->orderBy('favorita', 'desc')->get();
         }
